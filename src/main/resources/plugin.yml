@@ -6,3 +6,8 @@ description: Simple core functionality for plugins used by pinkprison.org
 softdepend:
   - Vault
   - PlaceholderAPI
+commands:
+    pinkcore:
+        description: Core command for PinkCore
+        usage: /pinkcore
+        aliases: [pinkcore, pc, core, pink]
