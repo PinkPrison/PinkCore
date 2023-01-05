@@ -5,7 +5,6 @@ import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.pinkprison.pinkcore.core.interfaces.IHook;
 import org.pinkprison.pinkcore.core.utils.ColorUtils;
 
 import java.lang.reflect.Field;
@@ -19,6 +18,7 @@ public class Actionbar extends Hook {
     public Actionbar() {
         super("Actionbar", org.pinkprison.pinkcore.core.enums.Hook.ACTIONBAR);
     }
+
 
     @Override
     public boolean init(JavaPlugin paramJavaPlugin) {
@@ -34,6 +34,12 @@ public class Actionbar extends Hook {
         return true;
     }
 
+    /**
+     * Send an actionbar message to a player
+     *
+     * @param player Player to send the message to
+     * @param message Message to send
+     */
     public static void sendActionBar(Player player, String message) {
         if (!player.isOnline()) {
             return; // Player may have logged out
@@ -81,6 +87,13 @@ public class Actionbar extends Hook {
         }
     }
 
+    /**
+     * Send an actionbar message to a player for a set amount of time
+     *
+     * @param player Player to send the message to
+     * @param message Message to send
+     * @param duration Duration to show the message for
+     */
     public static void sendActionBar(final Player player, final String message, int duration) {
         sendActionBar(player, message);
 
@@ -106,10 +119,21 @@ public class Actionbar extends Hook {
         }
     }
 
+    /**
+     * Send an actionbar message to all players
+     *
+     * @param message Message to send
+     */
     public static void sendActionBarToAllPlayers(String message) {
         sendActionBarToAllPlayers(message, -1);
     }
 
+    /**
+     * Send an actionbar message to all players for a set amount of time
+     *
+     * @param message Message to send
+     * @param duration Duration to show the message for
+     */
     public static void sendActionBarToAllPlayers(String message, int duration) {
         for (Player p : Bukkit.getOnlinePlayers()) {
             sendActionBar(p, message, duration);

@@ -41,6 +41,13 @@ public class StringUtils {
         return false;
     }
 
+    /**
+     * Returns a boolean value from weather or not a string is a number.
+     *
+     * @param s the string to check
+     * @return if the string is a number
+     */
+
     public static boolean isAlphabetical(String s) {
         if (s == null) return false;
         int len = s.length();

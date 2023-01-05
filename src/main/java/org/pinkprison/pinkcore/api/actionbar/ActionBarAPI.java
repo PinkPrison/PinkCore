@@ -24,6 +24,13 @@ public class ActionBarAPI {
         }
     }
 
+    /**
+     * Send an actionbar message to a player
+     *
+     * @param player Player to send the message to
+     *               (if online)
+     * @param message Message to send
+     */
     public static void sendActionBar(Player player, String message) {
         if (!player.isOnline()) {
             return; // Player may have logged out
@@ -72,6 +79,15 @@ public class ActionBarAPI {
         }
     }
 
+    /**
+     * Send an actionbar message to a player for a set amount of time
+     *
+     * @param player Player to send the message to
+     *               (if online)
+     * @param message Message to send
+     * @param duration Duration to send the message for
+     *                 (in ticks)
+     */
     public static void sendActionBar(final Player player, final String message, int duration) {
         sendActionBar(player, message);
 
@@ -97,10 +113,22 @@ public class ActionBarAPI {
         }
     }
 
+    /**
+     * Send an actionbar message to all players
+     *
+     * @param message Message to send
+     */
     public static void sendActionBarToAllPlayers(String message) {
         sendActionBarToAllPlayers(message, -1);
     }
 
+    /**
+     * Send an actionbar message to all players for a set amount of time
+     *
+     * @param message Message to send
+     * @param duration Duration to send the message for
+     *                 (in ticks)
+     */
     public static void sendActionBarToAllPlayers(String message, int duration) {
         for (Player p : Bukkit.getOnlinePlayers()) {
             sendActionBar(p, message, duration);

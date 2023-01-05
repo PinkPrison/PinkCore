@@ -7,10 +7,17 @@ public enum Hook {
     ;
 
     private final boolean isBuiltIn;
+
+    /**
+     * @param paramBoolean Whether the hook is built into PinkCore or not.
+     */
     Hook(boolean paramBoolean) {
         this.isBuiltIn = paramBoolean;
     }
 
+    /**
+     * @return Whether the hook is built into PinkCore or not.
+     */
     public boolean isBuiltIn() {
         return isBuiltIn;
     }

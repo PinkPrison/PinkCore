@@ -14,12 +14,14 @@ import java.util.Base64;
 import java.util.UUID;
 
 public class SkullBuilder {
+    /** @deprecated */
     @Deprecated
     public static ItemStack itemFromName(String paramString) {
         ItemStack itemStack = getPlayerSkullItem();
         return itemWithName(itemStack, paramString);
     }
 
+    /** @deprecated */
     @Deprecated
     public static ItemStack itemWithName(ItemStack paramItemStack, String paramString) {
         notNull(paramItemStack, "item");
@@ -27,10 +29,17 @@ public class SkullBuilder {
         return Bukkit.getUnsafe().modifyItemStack(paramItemStack, "{SkullOwner:\"" + paramString + "\"}");
     }
 
+    /**
+     * Returns a {@link Skull} item from the given {@link UUID}.
+     *
+     * @param paramUUID
+     * @return {@link Skull} {@link ItemStack} with the given {@link UUID} as the owner.
+     */
     public static ItemStack itemFromUuid(UUID paramUUID) {
         ItemStack itemStack = getPlayerSkullItem();
         return itemWithUuid(itemStack, paramUUID);
     }
+
 
     public static ItemStack itemWithUuid(ItemStack paramItemStack, UUID paramUUID) {
         notNull(paramItemStack, "item");
@@ -60,6 +69,12 @@ public class SkullBuilder {
         return paramItemStack;
     }
 
+    /**
+     * Returns a {@link Skull} item from the given {@link String} URL.
+     *
+     * @param paramString {@link String} URL
+     * @return {@link Skull} {@link ItemStack} with the given {@link String} URL as the data.
+     */
     public static ItemStack itemFromUrl(String paramString) {
         ItemStack itemStack = getPlayerSkullItem();
         return itemWithUrl(itemStack, paramString);
@@ -71,6 +86,12 @@ public class SkullBuilder {
         return itemWithBase64(paramItemStack, urlToBase64(paramString));
     }
 
+    /**
+     * Returns a {@link Skull} item from the given {@link String} Base64.
+     *
+     * @param paramString {@link String} Base64
+     * @return {@link Skull} {@link ItemStack} with the given {@link String} Base64 as the data.
+     */
     public static ItemStack itemFromBase64(String paramString) {
         ItemStack itemStack = getPlayerSkullItem();
         return itemWithBase64(itemStack, paramString);
@@ -113,6 +134,8 @@ public class SkullBuilder {
                 paramBlock.getY(),
                 paramBlock.getZ(), "{Owner:{Id:\"" + uUID + "\",Properties:{textures:[{Value:\"" + paramString + "\"}]}}}");
     }
+
+    /** returns a {@link Skull} {@link ItemStack} */
 
     public static ItemStack getPlayerSkullItem() {
         return new ItemStack(Material.valueOf("SKULL_ITEM"), 1, (short)3);
