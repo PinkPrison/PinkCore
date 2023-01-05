@@ -52,7 +52,7 @@
                     <relocations>
                         <relocation>
                             <pattern>dev.triumphteam.gui</pattern>
-                            <shadedPattern>org.pinkprison.gui</shadedPattern> <!-- Replace package here here -->
+                            <shadedPattern>org.pinkprison.pinkcore.gui</shadedPattern> <!-- Replace package here here -->
                         </relocation>
                     </relocations>
                 </configuration>
