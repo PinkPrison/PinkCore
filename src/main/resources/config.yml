@@ -1,0 +1,58 @@
+server-messages:
+  # The message that will be sent to the player when they join the server
+  join: '&aWelcome to the server, %player%!'
+
+  # The message that will be sent to the player when they leave the server
+  leave: '&cGoodbye, %player%!'
+
+auto-broadcast:
+  # The Duration between each broadcast in seconds
+  interval: 60
+
+  # The messages that will be broadcasted
+  broadcast-messages:
+    '1':
+      - '&aThis is the first line of the first broadcast message'
+      - '&aThis is the second line of the first broadcast message'
+      - '&aThis is the third line of the first broadcast message'
+      - '&a----------------------------------------'
+    '2':
+      - '&aThis is the first line of the second broadcast message'
+      - '&a----------------------------------------'
+    '3':
+      - '&aThis is the first line of the third broadcast message'
+      - '&aThis is the second line of the third broadcast message'
+      - '&a----------------------------------------'
+
+anti-craft:
+  # The message that will be sent to the player when they try to craft a blacklisted item
+  message: '&cYou are not allowed to craft this item!'
+
+  # The items that are blacklisted as IDs
+  blacklisted-items:
+    - 166
+    - 120
+    - 5
+    #- 0
+
+anti-place:
+  # The message that will be sent to the player when they try to place a blacklisted block
+  message: '&cYou are not allowed to place this block!'
+
+  # The blocks that are blacklisted as IDs
+  blacklisted-blocks:
+    - 120
+    #- 0
+
+blocked-commands:
+  # The message that will be sent to the player when they try to execute a blacklisted command
+  message: '&cYou are not allowed to execute this command!'
+
+  # The UUIDs of the players that are allowed to execute blacklisted commands
+  allowed-players:
+    #- '00000000-0000-0000-0000-000000000000' # This is an example UUID
+    - '7d82e51e-253e-4133-9454-002ba73e3174' # PandaPeter
+
+  # The commands that are blacklisted
+  blacklisted-commands:
+    - 'examplecommandlol'
