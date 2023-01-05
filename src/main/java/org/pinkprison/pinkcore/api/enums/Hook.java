@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.core.enums;
+package org.pinkprison.pinkcore.api.enums;
 
 public enum Hook {
     VAULT(false),

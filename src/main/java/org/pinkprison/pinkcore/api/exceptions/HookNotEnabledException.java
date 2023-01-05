@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.core.exceptions;
+package org.pinkprison.pinkcore.api.exceptions;
 
 public final class HookNotEnabledException extends RuntimeException {
     /**

@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.core.utils;
+package org.pinkprison.pinkcore.api.utils;
 
 import org.bukkit.ChatColor;
 

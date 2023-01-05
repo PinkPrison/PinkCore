@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.core.utils;
+package org.pinkprison.pinkcore.api.utils;
 
 import java.util.ArrayList;
 import java.util.List;

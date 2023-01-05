@@ -1,10 +1,10 @@
-package org.pinkprison.pinkcore.core.hooks;
+package org.pinkprison.pinkcore.api.hooks;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PlaceholderAPIHook extends Hook{
     public PlaceholderAPIHook() {
-        super("PlaceholderAPI", org.pinkprison.pinkcore.core.enums.Hook.PLACEHOLDERAPI);
+        super("PlaceholderAPI", org.pinkprison.pinkcore.api.enums.Hook.PLACEHOLDERAPI);
     }
 
     /**

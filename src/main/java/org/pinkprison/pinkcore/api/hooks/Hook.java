@@ -1,15 +1,15 @@
-package org.pinkprison.pinkcore.core.hooks;
+package org.pinkprison.pinkcore.api.hooks;
 
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
-import org.pinkprison.pinkcore.core.interfaces.IHook;
+import org.pinkprison.pinkcore.api.interfaces.IHook;
 
 /**
  * Implementation of IHook for the dependencies
  */
 public abstract class Hook implements IHook {
     private final String name;
-    private final org.pinkprison.pinkcore.core.enums.Hook hook;
+    private final org.pinkprison.pinkcore.api.enums.Hook hook;
     private final boolean isEnabled;
 
     /**
@@ -18,7 +18,7 @@ public abstract class Hook implements IHook {
      * @param paramString Hook name
      * @param paramHook Hook enum
      */
-    public Hook(String paramString, org.pinkprison.pinkcore.core.enums.Hook paramHook){
+    public Hook(String paramString, org.pinkprison.pinkcore.api.enums.Hook paramHook){
         this.name = paramString;
         this.hook = paramHook;
         if(paramHook.isBuiltIn())
@@ -49,7 +49,7 @@ public abstract class Hook implements IHook {
      * @return the enum of the hook
      */
     @Override
-    public @NotNull org.pinkprison.pinkcore.core.enums.Hook getEnum() {
+    public @NotNull org.pinkprison.pinkcore.api.enums.Hook getEnum() {
         return hook;
     }
 }

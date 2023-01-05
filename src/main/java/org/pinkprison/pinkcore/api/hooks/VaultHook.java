@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.core.hooks;
+package org.pinkprison.pinkcore.api.hooks;
 
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -8,7 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.pinkprison.pinkcore.core.exceptions.HookNotEnabledException;
+import org.pinkprison.pinkcore.api.exceptions.HookNotEnabledException;
 
 public class VaultHook extends Hook {
     private static Economy ECONOMY = null;
@@ -21,7 +21,7 @@ public class VaultHook extends Hook {
 
 
     public VaultHook() {
-        super("Vault", org.pinkprison.pinkcore.core.enums.Hook.VAULT);
+        super("Vault", org.pinkprison.pinkcore.api.enums.Hook.VAULT);
     }
 
     /**

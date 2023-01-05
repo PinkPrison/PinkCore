@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.core.builders;
+package org.pinkprison.pinkcore.api.builders;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.ChatColor;
@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.pinkprison.pinkcore.PinkCore;
-import org.pinkprison.pinkcore.core.enums.Hook;
+import org.pinkprison.pinkcore.api.enums.Hook;
 
 import java.util.ArrayList;
 import java.util.Collection;

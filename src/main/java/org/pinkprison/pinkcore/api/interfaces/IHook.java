@@ -1,7 +1,7 @@
-package org.pinkprison.pinkcore.core.interfaces;
+package org.pinkprison.pinkcore.api.interfaces;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.pinkprison.pinkcore.core.enums.Hook;
+import org.pinkprison.pinkcore.api.enums.Hook;
 
 public interface IHook {
 

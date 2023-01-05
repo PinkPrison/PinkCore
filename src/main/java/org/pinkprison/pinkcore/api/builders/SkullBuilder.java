@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.core.builders;
+package org.pinkprison.pinkcore.api.builders;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

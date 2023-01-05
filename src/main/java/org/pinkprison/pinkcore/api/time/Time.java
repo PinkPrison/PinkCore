@@ -1,6 +1,6 @@
-package org.pinkprison.pinkcore.core.time;
+package org.pinkprison.pinkcore.api.time;
 
-import org.pinkprison.pinkcore.core.utils.StringUtils;
+import org.pinkprison.pinkcore.api.utils.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
