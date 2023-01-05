@@ -104,13 +104,16 @@ public class VaultHook extends Hook {
         ECONOMY.withdrawPlayer(paramOfflinePlayer, paramDouble);
     }
 
+    /**
+     * withdrawBalance alias
+     */
     public static void removeBalance(OfflinePlayer paramOfflinePlayer, double paramDouble){
         withdrawBalance(paramOfflinePlayer, paramDouble);
     }
 
     /**
      *
-     * Deposit money from to {@link OfflinePlayer}'s balance.
+     * Deposit money to {@link OfflinePlayer}'s balance.
      *
      * @param paramOfflinePlayer the {@link OfflinePlayer} to deposit to.
      * @param paramDouble The amount to deposit
@@ -121,6 +124,9 @@ public class VaultHook extends Hook {
         ECONOMY.depositPlayer(paramOfflinePlayer, paramDouble);
     }
 
+    /**
+     * depositBalance alias
+     */
     public static void addBalance(OfflinePlayer paramOfflinePlayer, double paramDouble){
         depositBalance(paramOfflinePlayer, paramDouble);
     }
