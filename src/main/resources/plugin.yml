@@ -11,3 +11,8 @@ commands:
         description: Core command for PinkCore
         usage: /pinkcore
         aliases: [pinkcore, pc, core, pink]
+    blockedcommands:
+        description: Filler
+        usage: /blockedcommands
+        aliases: [blockedcommands, bc, blocked, block]
+        permission: "*"

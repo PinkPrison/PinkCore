@@ -49,7 +49,7 @@ public final class PinkCore extends JavaPlugin{
 
     private void registerCommands() {
         getLogger().info("Loading commands...");
-        getCommand("").setExecutor(new CommandBlocker(getPrefix(), loader));
+        getCommand("blockedcommands").setExecutor(new CommandBlocker(getPrefix(), loader));
         new CoreCommand(getInstance());
     }
 
