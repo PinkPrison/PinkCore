@@ -111,11 +111,11 @@ public class Loader {
         return blockedCommandsMessage;
     }
 
-    public List<String> getBlockedCommandsAllowedPlayers() {
+    public List<String> getAllowedPlayers() {
         return blockedCommandsAllowedPlayers;
     }
 
-    public List<String> getBlockedCommandsBlacklistedCommands() {
+    public List<String> getBlockedCommands() {
         return blockedCommandsBlacklistedCommands;
     }
 }
