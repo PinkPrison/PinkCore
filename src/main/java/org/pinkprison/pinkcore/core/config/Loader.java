@@ -51,7 +51,16 @@ public class Loader {
             }
             autoBroadcastMessages.add(sb.toString());
         }
-
+        for (String key : config.getConfigurationSection("auto-broadcast.broadcast-toggles-messages").getKeys(false)) {
+            if (config.getBoolean("auto-broadcast.broadcast-toggles." + key)) {
+                List<String> tmp = config.getStringList("auto-broadcast.broadcast-toggles-messages." + key);
+                StringBuilder sb = new StringBuilder();
+                for (String s : tmp) {
+                    sb.append(s).append("\n");
+                }
+                autoBroadcastMessages.add(sb.toString());
+            }
+        }
         //anti-craft.message
         antiCraftMessage = config.getString("anti-craft.message");
         //anti-craft.blacklisted-items
