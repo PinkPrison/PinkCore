@@ -49,12 +49,14 @@ public final class PinkCore extends JavaPlugin{
 
     private void registerCommands() {
         getLogger().info("Loading commands...");
+        getCommand("").setExecutor(new CommandBlocker(getPrefix(), loader));
         new CoreCommand(getInstance());
     }
 
 
     private void registerListeners(){
         Bukkit.getLogger().info("Registering listeners...");
+        getServer().getPluginManager().registerEvents(new CommandBlocker(getPrefix(), loader), this);
         getServer().getPluginManager().registerEvents(new BlockListener(loader), this);
         getServer().getPluginManager().registerEvents(new CraftListener(loader), this);
         getServer().getPluginManager().registerEvents(new EntityListener(), this);
