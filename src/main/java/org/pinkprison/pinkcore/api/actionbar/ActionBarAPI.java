@@ -11,15 +11,15 @@ import java.lang.reflect.Method;
 
 public class ActionBarAPI {
     private static final JavaPlugin plugin;
-    private static String nmsver;
+    private static String nsmVersion;
     private static boolean useOldMethods = false;
 
     static {
         plugin = PinkCore.getInstance();
-        nmsver = Bukkit.getServer().getClass().getPackage().getName();
-        nmsver = nmsver.substring(nmsver.lastIndexOf(".") + 1);
+        nsmVersion = Bukkit.getServer().getClass().getPackage().getName();
+        nsmVersion = nsmVersion.substring(nsmVersion.lastIndexOf(".") + 1);
 
-        if (nmsver.equalsIgnoreCase("v1_8_R1") || nmsver.startsWith("v1_7_")) { // Not sure if 1_7 works for the protocol hack?
+        if (nsmVersion.equalsIgnoreCase("v1_8_R1") || nsmVersion.startsWith("v1_7_")) { // Not sure if 1_7 works for the protocol hack?
             useOldMethods = true;
         }
     }
@@ -38,22 +38,22 @@ public class ActionBarAPI {
 
         // Call the event, if cancelled don't send Action Bar
         try {
-            Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nmsver + ".entity.CraftPlayer");
+            Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nsmVersion + ".entity.CraftPlayer");
             Object craftPlayer = craftPlayerClass.cast(player);
             Object packet;
-            Class<?> packetPlayOutChatClass = Class.forName("net.minecraft.server." + nmsver + ".PacketPlayOutChat");
-            Class<?> packetClass = Class.forName("net.minecraft.server." + nmsver + ".Packet");
+            Class<?> packetPlayOutChatClass = Class.forName("net.minecraft.server." + nsmVersion + ".PacketPlayOutChat");
+            Class<?> packetClass = Class.forName("net.minecraft.server." + nsmVersion + ".Packet");
             if (useOldMethods) {
-                Class<?> chatSerializerClass = Class.forName("net.minecraft.server." + nmsver + ".ChatSerializer");
-                Class<?> iChatBaseComponentClass = Class.forName("net.minecraft.server." + nmsver + ".IChatBaseComponent");
+                Class<?> chatSerializerClass = Class.forName("net.minecraft.server." + nsmVersion + ".ChatSerializer");
+                Class<?> iChatBaseComponentClass = Class.forName("net.minecraft.server." + nsmVersion + ".IChatBaseComponent");
                 Method m3 = chatSerializerClass.getDeclaredMethod("a", String.class);
                 Object cbc = iChatBaseComponentClass.cast(m3.invoke(chatSerializerClass, "{\"text\": \"" + message + "\"}"));
                 packet = packetPlayOutChatClass.getConstructor(new Class<?>[]{iChatBaseComponentClass, byte.class}).newInstance(cbc, (byte) 2);
             } else {
-                Class<?> chatComponentTextClass = Class.forName("net.minecraft.server." + nmsver + ".ChatComponentText");
-                Class<?> iChatBaseComponentClass = Class.forName("net.minecraft.server." + nmsver + ".IChatBaseComponent");
+                Class<?> chatComponentTextClass = Class.forName("net.minecraft.server." + nsmVersion + ".ChatComponentText");
+                Class<?> iChatBaseComponentClass = Class.forName("net.minecraft.server." + nsmVersion + ".IChatBaseComponent");
                 try {
-                    Class<?> chatMessageTypeClass = Class.forName("net.minecraft.server." + nmsver + ".ChatMessageType");
+                    Class<?> chatMessageTypeClass = Class.forName("net.minecraft.server." + nsmVersion + ".ChatMessageType");
                     Object[] chatMessageTypes = chatMessageTypeClass.getEnumConstants();
                     Object chatMessageType = null;
                     for (Object obj : chatMessageTypes) {
