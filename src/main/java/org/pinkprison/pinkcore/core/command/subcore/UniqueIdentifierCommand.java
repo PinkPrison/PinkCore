@@ -12,6 +12,16 @@ public class UniqueIdentifierCommand extends SubCommand {
         super(plugin, "Provides a UUID from an Offline Player", "uuid", "*", "uuid", "uniqueid", "uniqueidentifier", "uid", "u");
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Provides a UUID from an {@link OfflinePlayer}
+     *
+     * @param sender The sender of the command.
+     * @param args The arguments of the command.
+     *
+     * @return true if the command was executed successfully, false otherwise.
+     */
     @Override
     public boolean execute(CommandSender sender, String[] args) {
         if (args.length != 1) {

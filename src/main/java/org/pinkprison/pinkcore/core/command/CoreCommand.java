@@ -49,6 +49,12 @@ public class CoreCommand extends org.pinkprison.pinkcore.core.command.Command im
         return true;
     }
 
+    /**
+     * Send the help message to the sender.
+     *
+     * @param sender The sender to send the message to.
+     * @param label  The label of the command.
+     */
     private void sendHelpMessage(CommandSender sender, String label) {
         sender.sendMessage("§7§m----------------------------------------");
         sender.sendMessage("");

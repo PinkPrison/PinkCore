@@ -11,6 +11,13 @@ public class ReloadCommand extends SubCommand {
         super(plugin, "Reload the plugin", "reload", "pinkcore.reload", "reload", "rl");
     }
 
+    /**
+     * {@inheritDoc}
+     * Reloads the config and configurable parts of the plugin.
+     *
+     * @param sender The sender of the command
+     * @param args The arguments of the command
+     */
     @Override
     public boolean execute(CommandSender sender, String[] args) {
         if (args.length != 0) {

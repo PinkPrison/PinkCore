@@ -109,10 +109,6 @@ public final class PinkCore extends JavaPlugin{
         return "&8[ &d&lPink&f&lCore &8] &r";
     }
 
-    public Loader getLoader() {
-        return loader;
-    }
-
     public static PinkCore getInstance() {
         return INSTANCE;
     }

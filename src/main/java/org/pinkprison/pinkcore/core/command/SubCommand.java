@@ -18,20 +18,48 @@ public abstract class SubCommand extends Command {
         this.aliases = aliases;
     }
 
+    /**
+     * The method that is called when the command is executed.
+     *
+     * @param sender The sender of the command.
+     * @param args The arguments of the command.
+     *
+     * @return Whether the command was executed successfully.
+     */
     public abstract boolean execute(CommandSender sender, String[] args);
 
+    /**
+     * Get the permission of the command.
+     *
+     * @return The permission of the sub command.
+     */
     public String getPermission() {
         return this.permission;
     }
 
+    /**
+     * Get the usage of the command.
+     *
+     * @return The usage of the sub command.
+     */
     public String getUsage(String label) {
         return "/" + label + " " + this.usage;
     }
 
+    /**
+     * Get the description of the command.
+     *
+     * @return The description of the sub command.
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Get the aliases of the command.
+     *
+     * @return The aliases of the sub command.
+     */
     public String[] getAliases() {
         return this.aliases;
     }

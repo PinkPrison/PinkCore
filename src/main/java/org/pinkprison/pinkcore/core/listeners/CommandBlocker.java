@@ -24,6 +24,13 @@ public class CommandBlocker implements CommandExecutor, Listener {
         this.loader = loader;
     }
 
+    /**
+     * Check if the command is blocked. If it is, send a message to the player and cancel the event.
+     *
+     * @param commandSender The sender of the command.
+     * @param command The command to check.
+     * @return True if the command is blocked, false if not.
+     */
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (!(commandSender instanceof Player)) {
@@ -40,14 +47,31 @@ public class CommandBlocker implements CommandExecutor, Listener {
         return false;
     }
 
+    /**
+     * Check if the sender can bypass the command blocker.
+     *
+     * @param uuid The UUID of the sender.
+     *
+     * @return True if the sender can bypass, false if not.
+     */
     private boolean canBypass(UUID uuid) {
         return loader.getAllowedPlayers().contains(uuid.toString());
     }
 
+    /**
+     * Check if the command is blocked.
+     *
+     * @param command The command to check.
+     *
+     * @return True if the command is blocked, false if not.
+     */
     private boolean isBlocked(String command) {
         return loader.getBlockedCommands().contains(command);
     }
 
+    /**
+     * Check if the command is blocked. If it is, send a message to the player and cancel the event.
+     */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onCommand(PlayerCommandPreprocessEvent event) {
         final String command = event.getMessage().split(" ")[0].replace("/", "");
