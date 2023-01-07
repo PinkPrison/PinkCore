@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 @Deprecated
-@Warning(reason = "This class is deprecated, and should only be used if the issue is Relevant.")
+@Warning(reason = "This class is deprecated, and the listener should only be registered if the issue is Relevant.")
 public class DamageBugCanceller implements Listener {
 
     /**
