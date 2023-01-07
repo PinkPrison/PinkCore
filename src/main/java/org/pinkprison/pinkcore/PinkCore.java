@@ -20,6 +20,10 @@ import java.util.HashMap;
 public final class PinkCore extends JavaPlugin{
     private static final HashMap<String, Plugin> DEPENDANTS = new HashMap<>();
     private static final HashMap<Hook, Boolean> HOOKS = new HashMap<>();
+
+    //For the auto broadcast
+    private String[] messages;
+
     private Loader loader;
     private static PinkCore INSTANCE;
 
@@ -29,6 +33,8 @@ public final class PinkCore extends JavaPlugin{
         INSTANCE = this;
         loader = new Loader();
         loader.load(getConfig());
+        messages = loader.getAutoBroadcastMessages().toArray(new String[0]);
+
         Bukkit.getLogger().info("Loading dependant plugins.");
         for(Plugin dependant : getServer().getPluginManager().getPlugins()){
             PluginDescriptionFile pdf = dependant.getDescription();
@@ -81,7 +87,6 @@ public final class PinkCore extends JavaPlugin{
 
     private void startAutoBroadcast() {
         new BukkitRunnable() {
-            String[] messages = loader.getAutoBroadcastMessages().toArray(new String[0]);
             int messageIndex = 0;
             @Override
             public void run() {
@@ -97,6 +102,7 @@ public final class PinkCore extends JavaPlugin{
     public void reload() {
         reloadConfig();
         loader.load(getConfig());
+        messages = loader.getAutoBroadcastMessages().toArray(new String[0]);
     }
 
     public String getPrefix() {
