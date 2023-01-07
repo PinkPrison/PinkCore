@@ -3,7 +3,7 @@ package org.pinkprison.pinkcore.core.command.subcore;
 import org.bukkit.command.CommandSender;
 import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
-import org.pinkprison.pinkcore.core.command.SubCommand;
+import org.pinkprison.pinkcore.api.command.SubCommand;
 
 public class ReloadCommand extends SubCommand {
 

@@ -4,7 +4,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
-import org.pinkprison.pinkcore.core.command.SubCommand;
+import org.pinkprison.pinkcore.api.command.SubCommand;
 
 public class UniqueIdentifierCommand extends SubCommand {
 

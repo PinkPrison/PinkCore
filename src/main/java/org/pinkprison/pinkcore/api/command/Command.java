@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.core.command;
+package org.pinkprison.pinkcore.api.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

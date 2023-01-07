@@ -3,6 +3,8 @@ package org.pinkprison.pinkcore.core.command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.pinkprison.pinkcore.PinkCore;
+import org.pinkprison.pinkcore.api.command.Command;
+import org.pinkprison.pinkcore.api.command.SubCommand;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.core.command.subcore.ReloadCommand;
 import org.pinkprison.pinkcore.core.command.subcore.UniqueIdentifierCommand;
@@ -10,7 +12,7 @@ import org.pinkprison.pinkcore.core.command.subcore.UniqueIdentifierCommand;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CoreCommand extends org.pinkprison.pinkcore.core.command.Command implements CommandExecutor {
+public class CoreCommand extends Command implements CommandExecutor {
     private final ArrayList<SubCommand> commands = new ArrayList<>();
     public CoreCommand(PinkCore plugin) {
         super(plugin);
