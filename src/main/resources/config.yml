@@ -61,7 +61,6 @@ anti-craft:
   blacklisted-items:
     - 166
     - 120
-    - 5
     #- 0
 
 anti-place:
@@ -85,3 +84,40 @@ blocked-commands:
   # The commands that are blacklisted
   blacklisted-commands:
     - "blockedcommands" # does not do anything anyway, but leave it as an example command
+    - "minecraft:op"
+    - "minecraft:deop"
+    - "minecraft:me"
+    - "minecraft:tell"
+    - "minecraft:pl"
+    - "minecraft:plugins"
+    - "op"
+    - "deop"
+    - "me"
+    - "tell"
+    - "pl"
+    - "plugins"
+    - "gamerule"
+    - "nuke"
+    - "kickall"
+    - "say"
+    - "spigot:pl"
+    - "spigot:plugins"
+    - "eme"
+    - "ac"
+    - "essentials:ac"
+    - "helpop"
+    - "ehelop"
+    - "essentials:helpop"
+    - "essentials:ehelpop"
+    - "bukkit:pl"
+    - "bukkit:plugins"
+    - "ept"
+    - "epowertool"
+    - "essentials:pt"
+    - "essentials:powertool"
+    - "pt"
+    - "powertool"
+    - "stop"
+    - "icanhasbukkit"
+    - "lockdown"
+    - "litebans:lockdown"
