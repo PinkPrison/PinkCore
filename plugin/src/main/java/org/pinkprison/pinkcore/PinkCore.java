@@ -55,7 +55,8 @@ public final class PinkCore extends JavaPlugin{
 
     private void registerCommands(Loader loader) {
         getLogger().info("Loading commands...");
-        getCommand("blockedcommands").setExecutor(new CommandBlocker(this, loader));
+        getCommand("blockedcommands").setExecutor(
+                new org.pinkprison.pinkcore.core.command.CommandBlocker(this, loader));
         new CoreCommand(getInstance());
     }
 
