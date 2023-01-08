@@ -33,6 +33,26 @@ public class Loader {
     //blocked-commands.blacklisted-commands
     private List<String> blockedCommandsBlacklistedCommands = new ArrayList<>();
 
+    //canceller-toggling.allow-portal-creation
+    private boolean allowPortalCreation;
+    //canceller-toggling.allow-explosions
+    private boolean allowExplosions;
+    //canceller-toggling.allow-weather-changes
+    private boolean allowWeatherChanges;
+    //canceller-toggling.allow-lightning-strikes
+    private boolean allowLightningStrikes;
+    //canceller-toggling.send-activity-message
+    private boolean sendActivityMessage;
+
+    //damage-exploit-disabler.enabled
+    private boolean damageExploitDisabler;
+    //damage-exploit-disabler.error-message
+    private String damageExploitDisablerErrorMessage;
+    //damage-exploit-disabler.fix-message
+    private String damageExploitDisablerFixMessage;
+
+
+
     public void load(FileConfiguration config) {
         //server-messages.join
         joinMessage = config.getString("server-messages.join");
@@ -82,6 +102,24 @@ public class Loader {
         //blocked-commands.blacklisted-commands
         blockedCommandsBlacklistedCommands.clear();
         blockedCommandsBlacklistedCommands = config.getStringList("blocked-commands.blacklisted-commands");
+
+        //canceller-toggling.allow-portal-creation
+        allowPortalCreation = config.getBoolean("canceller-toggling.allow-portal-creation");
+        //canceller-toggling.allow-explosions
+        allowExplosions = config.getBoolean("canceller-toggling.allow-explosions");
+        //canceller-toggling.allow-weather-changes
+        allowWeatherChanges = config.getBoolean("canceller-toggling.allow-weather-changes");
+        //canceller-toggling.allow-lightning-strikes
+        allowLightningStrikes = config.getBoolean("canceller-toggling.allow-lightning-strikes");
+        //canceller-toggling.send-activity-message
+        sendActivityMessage = config.getBoolean("canceller-toggling.send-activity-message");
+
+        //damage-exploit-disabler.enabled
+        damageExploitDisabler = config.getBoolean("damage-exploit-disabler.enabled");
+        //damage-exploit-disabler.error-message
+        damageExploitDisablerErrorMessage = config.getString("damage-exploit-disabler.error-message");
+        //damage-exploit-disabler.fix-message
+        damageExploitDisablerFixMessage = config.getString("damage-exploit-disabler.fix-message");
     }
 
     public String getJoinMessage() {
@@ -126,5 +164,37 @@ public class Loader {
 
     public List<String> getBlockedCommands() {
         return blockedCommandsBlacklistedCommands;
+    }
+
+    public boolean allowPortalCreation() {
+        return allowPortalCreation;
+    }
+
+    public boolean allowExplosions() {
+        return allowExplosions;
+    }
+
+    public boolean allowWeatherChanges() {
+        return allowWeatherChanges;
+    }
+
+    public boolean allowLightningStrikes() {
+        return allowLightningStrikes;
+    }
+
+    public boolean sendJoinLeaveMessages() {
+        return sendActivityMessage;
+    }
+
+    public boolean enableDamageExploitFixer() {
+        return damageExploitDisabler;
+    }
+
+    public String getDamageExploitDisablerErrorMessage() {
+        return damageExploitDisablerErrorMessage;
+    }
+
+    public String getDamageExploitDisablerFixMessage() {
+        return damageExploitDisablerFixMessage;
     }
 }
