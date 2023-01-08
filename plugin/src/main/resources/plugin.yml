@@ -1,5 +1,5 @@
 name: PinkCore
-version: '${project.version}'
+version: '${project.pluginVersion}'
 main: org.pinkprison.pinkcore.PinkCore
 authors: [ Champen_V1ldtand ]
 description: Simple core functionality for plugins used by pinkprison.org
