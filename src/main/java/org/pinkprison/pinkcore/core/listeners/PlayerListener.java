@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.core.config.Loader;
 
@@ -12,7 +13,8 @@ public class PlayerListener implements Listener {
     private final Loader loader;
     private final boolean sendMessages;
 
-    public PlayerListener(Loader loader) {
+    public PlayerListener(PinkCore plugin, Loader loader) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.loader = loader;
         this.sendMessages = loader.sendJoinLeaveMessages();
     }

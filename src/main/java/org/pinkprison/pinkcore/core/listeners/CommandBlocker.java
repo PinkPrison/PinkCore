@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.core.config.Loader;
 
@@ -19,8 +20,9 @@ public class CommandBlocker implements CommandExecutor, Listener {
     private final Loader loader;
 
 
-    public CommandBlocker(String pluginPrefix, Loader loader) {
-        this.prefix = pluginPrefix;
+    public CommandBlocker(PinkCore plugin, Loader loader) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        this.prefix = plugin.getPrefix();
         this.loader = loader;
     }
 

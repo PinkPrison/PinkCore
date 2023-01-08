@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 
 @Deprecated
@@ -16,8 +17,11 @@ public class DamageBugCanceller implements Listener {
     private final String errorMessage;
     private final String fixMessage;
 
-    @Deprecated
-    public DamageBugCanceller(String errorMessage, String fixMessage) {
+
+    public DamageBugCanceller(PinkCore plugin, String errorMessage, String fixMessage) {
+        if (plugin.getLoader().enableDamageExploitFixer()) {
+            plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        }
         this.errorMessage = errorMessage;
         this.fixMessage = fixMessage;
     }
@@ -28,7 +32,6 @@ public class DamageBugCanceller implements Listener {
      *
      * @param event {@link EntityDamageByEntityEvent}
      */
-    @Deprecated
     @EventHandler
     public void onPlayerAttackPlayer(EntityDamageByEntityEvent event) {
         if (!(event.getDamager() instanceof Player)) {
@@ -58,7 +61,6 @@ public class DamageBugCanceller implements Listener {
      *
      * @return if the item is allowed to exceed the damage limit.
      */
-
     private boolean checkDamage(ItemStack heldItem, String @NotNull ... dontCheck) {
         for (String item : dontCheck) {
             if (heldItem.getType().name()

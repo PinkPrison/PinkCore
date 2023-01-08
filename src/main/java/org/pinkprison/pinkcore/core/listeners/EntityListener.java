@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityCreatePortalEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.core.config.Loader;
 
 public class EntityListener implements Listener {
@@ -11,7 +12,8 @@ public class EntityListener implements Listener {
     private final boolean allowPortalCreation;
     private final boolean allowExplosions;
 
-    public EntityListener(Loader loader) {
+    public EntityListener(PinkCore plugin, Loader loader) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.allowPortalCreation = loader.allowPortalCreation();
         this.allowExplosions = loader.allowExplosions();
     }

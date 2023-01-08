@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
+import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.core.config.Loader;
 
@@ -12,7 +13,8 @@ public class CraftListener implements Listener {
 
     private final Loader loader;
 
-    public CraftListener(Loader loader) {
+    public CraftListener(PinkCore plugin, Loader loader) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.loader = loader;
     }
 

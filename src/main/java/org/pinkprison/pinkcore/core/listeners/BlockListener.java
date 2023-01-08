@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.core.config.Loader;
 
@@ -12,7 +13,8 @@ public class BlockListener implements Listener {
 
     private final Loader loader;
 
-    public BlockListener(Loader loader) {
+    public BlockListener(PinkCore plugin, Loader loader) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
         this.loader = loader;
     }
 

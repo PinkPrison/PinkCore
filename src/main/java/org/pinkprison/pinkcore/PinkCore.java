@@ -55,24 +55,22 @@ public final class PinkCore extends JavaPlugin{
 
     private void registerCommands(Loader loader) {
         getLogger().info("Loading commands...");
-        getCommand("blockedcommands").setExecutor(new CommandBlocker(getPrefix(), loader));
+        getCommand("blockedcommands").setExecutor(new CommandBlocker(this, loader));
         new CoreCommand(getInstance());
     }
 
     private void registerListeners(Loader loader){
         Bukkit.getLogger().info("Registering listeners...");
-        if (loader.enableDamageExploitFixer())
-            getServer().getPluginManager().registerEvents(new DamageBugCanceller(
+        new DamageBugCanceller(this,
                     loader.getDamageExploitDisablerErrorMessage(),
-                    loader.getDamageExploitDisablerFixMessage()),
-                    this);
-        getServer().getPluginManager().registerEvents(new CommandBlocker(getPrefix(), loader), this);
-        getServer().getPluginManager().registerEvents(new BlockListener(loader), this);
-        getServer().getPluginManager().registerEvents(new CraftListener(loader), this);
-        getServer().getPluginManager().registerEvents(new EntityListener(loader), this);
-        getServer().getPluginManager().registerEvents(new PlayerListener(loader), this);
-        getServer().getPluginManager().registerEvents(new WeatherListener(loader), this);
-        getServer().getPluginManager().registerEvents(new WorldListener(loader), this);
+                    loader.getDamageExploitDisablerFixMessage());
+        new CommandBlocker(this, loader);
+        new BlockListener(this, loader);
+        new CraftListener(this, loader);
+        new EntityListener(this, loader);
+        new PlayerListener(this, loader);
+        new WeatherListener(this, loader);
+        new WorldListener(this, loader);
     }
 
     private void initialiseHooks(){
@@ -111,6 +109,10 @@ public final class PinkCore extends JavaPlugin{
 
     public String getPrefix() {
         return "&8[ &d&lPink&f&lCore &8] &r";
+    }
+
+    public Loader getLoader() {
+        return loader;
     }
 
     public static PinkCore getInstance() {
