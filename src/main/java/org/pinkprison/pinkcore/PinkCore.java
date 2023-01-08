@@ -46,29 +46,33 @@ public final class PinkCore extends JavaPlugin{
         Bukkit.getLogger().info("Initialising hooks...");
         initialiseHooks();
 
-        registerCommands();
+        registerCommands(loader);
 
-        registerListeners();
+        registerListeners(loader);
 
         startAutoBroadcast();
     }
 
-    private void registerCommands() {
+    private void registerCommands(Loader loader) {
         getLogger().info("Loading commands...");
         getCommand("blockedcommands").setExecutor(new CommandBlocker(getPrefix(), loader));
         new CoreCommand(getInstance());
     }
 
-
-    private void registerListeners(){
+    private void registerListeners(Loader loader){
         Bukkit.getLogger().info("Registering listeners...");
+        if (loader.enableDamageExploitFixer())
+            getServer().getPluginManager().registerEvents(new DamageBugCanceller(
+                    loader.getDamageExploitDisablerErrorMessage(),
+                    loader.getDamageExploitDisablerFixMessage()),
+                    this);
         getServer().getPluginManager().registerEvents(new CommandBlocker(getPrefix(), loader), this);
         getServer().getPluginManager().registerEvents(new BlockListener(loader), this);
         getServer().getPluginManager().registerEvents(new CraftListener(loader), this);
-        getServer().getPluginManager().registerEvents(new EntityListener(), this);
+        getServer().getPluginManager().registerEvents(new EntityListener(loader), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(loader), this);
-        getServer().getPluginManager().registerEvents(new WeatherListener(), this);
-        getServer().getPluginManager().registerEvents(new WorldListener(), this);
+        getServer().getPluginManager().registerEvents(new WeatherListener(loader), this);
+        getServer().getPluginManager().registerEvents(new WorldListener(loader), this);
     }
 
     private void initialiseHooks(){
