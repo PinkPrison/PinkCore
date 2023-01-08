@@ -1,6 +1,6 @@
 # PinkCore
 
-A Core functionality plugin for projects made by pinkprison.org
+A Core functionality plugin for projects made by the pinkprison development team
 
 # API
 
