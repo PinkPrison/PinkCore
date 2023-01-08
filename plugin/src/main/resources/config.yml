@@ -59,9 +59,9 @@ anti-craft:
 
   # The items that are blacklisted as IDs
   blacklisted-items:
-    - 166
-    - 120
-    #- 0
+    - "minecraft:bedrock"
+    - "minecraft:barrier"
+    #- minecraft:bedrock
 
 anti-place:
   # The message that will be sent to the player when they try to place a blacklisted block
@@ -69,8 +69,8 @@ anti-place:
 
   # The blocks that are blacklisted as IDs
   blacklisted-blocks:
-    - 120
-    #- 0
+    - "minecraft:command_block"
+    #- minecraft:stone
 
 blocked-commands:
   # The message that will be sent to the player when they try to execute a blacklisted command

@@ -23,15 +23,15 @@ public class BlockListener implements Listener {
         final Block block = event.getBlock();
         final Player player = event.getPlayer();
 
-        if (isBlacklisted(block, loader.getAntiPlaceBlacklistedBlocks().toArray(new Integer[0]))) {
+        if (isBlacklisted(block, loader.getAntiPlaceBlacklistedBlocks().toArray(new String[0]))) {
             player.sendMessage(ColorUtils.getColored(loader.getAntiPlaceMessage()));
             event.setCancelled(true);
         }
     }
 
-    private boolean isBlacklisted(Block placedBlock, Integer... blacklistedBlockIDs) {
-        for (int id : blacklistedBlockIDs) {
-            if (placedBlock.getTypeId() == id) {
+    private boolean isBlacklisted(Block placedBlock, String... blacklistedBlockIDs) {
+        for (String blockId : blacklistedBlockIDs) {
+            if (placedBlock.getType().toString().equalsIgnoreCase(blockId)) {
                 return true;
             }
         }

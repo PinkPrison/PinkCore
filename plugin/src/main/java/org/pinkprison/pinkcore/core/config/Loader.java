@@ -19,12 +19,12 @@ public class Loader {
     //anti-craft.message
     private String antiCraftMessage;
     //anti-craft.blacklisted-items
-    private List<Integer> antiCraftBlacklistedItems = new ArrayList<>();
+    private List<String> antiCraftBlacklistedItems = new ArrayList<>();
 
     //anti-place.message
     private String antiPlaceMessage;
     //anti-place.blacklisted-blocks
-    private List<Integer> antiPlaceBlacklistedBlocks = new ArrayList<>();
+    private List<String> antiPlaceBlacklistedBlocks = new ArrayList<>();
 
     //blocked-commands.message
     private String blockedCommandsMessage;
@@ -85,13 +85,13 @@ public class Loader {
         antiCraftMessage = config.getString("anti-craft.message");
         //anti-craft.blacklisted-items
         antiCraftBlacklistedItems.clear();
-        antiCraftBlacklistedItems = config.getIntegerList("anti-craft.blacklisted-items");
+        antiCraftBlacklistedItems = config.getStringList("anti-craft.blacklisted-items");
 
         //anti-place.message
         antiPlaceMessage = config.getString("anti-place.message");
         //anti-place.blacklisted-blocks
         antiPlaceBlacklistedBlocks.clear();
-        antiPlaceBlacklistedBlocks = config.getIntegerList("anti-place.blacklisted-blocks");
+        antiPlaceBlacklistedBlocks = config.getStringList("anti-place.blacklisted-blocks");
 
         //blocked-commands.message
         blockedCommandsMessage = config.getString("blocked-commands.message");
@@ -142,7 +142,7 @@ public class Loader {
         return antiCraftMessage;
     }
 
-    public List<Integer> getAntiCraftBlacklistedItems() {
+    public List<String> getAntiCraftBlacklistedItems() {
         return antiCraftBlacklistedItems;
     }
 
@@ -150,7 +150,7 @@ public class Loader {
         return antiPlaceMessage;
     }
 
-    public List<Integer> getAntiPlaceBlacklistedBlocks() {
+    public List<String> getAntiPlaceBlacklistedBlocks() {
         return antiPlaceBlacklistedBlocks;
     }
 
