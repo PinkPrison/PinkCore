@@ -76,10 +76,9 @@ blocked-commands:
   # The message that will be sent to the player when they try to execute a blacklisted command
   message: "&cYou are not allowed to execute this command!"
 
-  # The UUIDs of the players that are allowed to execute blacklisted commands
+  # The UUIDs of the players that are allowed to execute blacklisted commands, it is recommended to provide a comment with the name of the player
   allowed-players:
-    #- '00000000-0000-0000-0000-000000000000' # This is an example UUID
-    - "7d82e51e-253e-4133-9454-002ba73e3174" # PandaPeter
+    #- "00000000-0000-0000-0000-000000000000" # This is an example UUID, It is not a real UUID
 
   # The commands that are blacklisted
   blacklisted-commands:
@@ -121,3 +120,15 @@ blocked-commands:
     - "icanhasbukkit"
     - "lockdown"
     - "litebans:lockdown"
+
+canceller-toggling:
+  allow-portal-creation: false # Allows players to create portals
+  allow-explosions: false # Allows explosions
+  allow-weather-changes: false # Allows weather changes
+  allow-lightning-strikes: false # Allows lightning strikes
+  send-activity-message: true # Enables custom join / leave messages
+
+damage-exploit-disabler:
+  enable: false # Enables the damage exploit disabler
+  error-message: "Det ser ud til du bruger en Damage Bug, du kan derfor ikke slå folk." # The message that will be sent to the player when they try to do the damage exploit
+  fix-message: "Få droppet et sværd til dig, så kan du slå igen." # The message that will be sent to the player describing how to fix it
