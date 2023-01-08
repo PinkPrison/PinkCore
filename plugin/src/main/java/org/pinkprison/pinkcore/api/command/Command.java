@@ -2,12 +2,13 @@ package org.pinkprison.pinkcore.api.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.pinkprison.pinkcore.PinkCore;
 
 public abstract class Command {
-    private final PinkCore plugin;
+    private final JavaPlugin plugin;
 
-    public Command(PinkCore plugin) {
+    public Command(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -70,7 +71,7 @@ public abstract class Command {
      *
      * @return The plugin
      */
-    protected PinkCore getPlugin() {
+    protected JavaPlugin getPlugin() {
         return plugin;
     }
 }

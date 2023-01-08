@@ -2,14 +2,18 @@ package org.pinkprison.pinkcore.core.command.subcore;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.api.command.SubCommand;
 
 public class UniqueIdentifierCommand extends SubCommand {
 
-    public UniqueIdentifierCommand(PinkCore plugin) {
+    private final PinkCore plugin;
+
+    public UniqueIdentifierCommand(JavaPlugin plugin) {
         super(plugin, "Provides a UUID from an Offline Player", "uuid", "*", "uuid", "uniqueid", "uniqueidentifier", "uid", "u");
+        this.plugin = (PinkCore) plugin;
     }
 
     /**
@@ -32,10 +36,10 @@ public class UniqueIdentifierCommand extends SubCommand {
         }
         final OfflinePlayer player = getPlugin().getServer().getOfflinePlayer(args[0]);
         if (player == null) {
-            sender.sendMessage(ColorUtils.getColored(getPlugin().getPrefix()) + " Player " + args[0] + " not found!");
+            sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " Player " + args[0] + " not found!");
             return true;
         }
-        sender.sendMessage(ColorUtils.getColored(getPlugin().getPrefix()) + " UUID for " + player.getName() + " is §c" + player.getUniqueId().toString());
+        sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " UUID for " + player.getName() + " is §c" + player.getUniqueId().toString());
         return true;
     }
 }

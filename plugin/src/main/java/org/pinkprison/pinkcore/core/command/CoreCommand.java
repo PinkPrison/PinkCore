@@ -2,6 +2,7 @@ package org.pinkprison.pinkcore.core.command;
 
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.command.Command;
 import org.pinkprison.pinkcore.api.command.SubCommand;
@@ -13,10 +14,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CoreCommand extends Command implements CommandExecutor {
+
+    private final PinkCore plugin;
     private final ArrayList<SubCommand> commands = new ArrayList<>();
-    public CoreCommand(PinkCore plugin) {
+    public CoreCommand(JavaPlugin plugin) {
         super(plugin);
         plugin.getCommand("pinkcore").setExecutor(this);
+        this.plugin = (PinkCore) plugin;
         commands.add(new ReloadCommand(plugin));
         commands.add(new UniqueIdentifierCommand(plugin));
 
@@ -41,7 +45,7 @@ public class CoreCommand extends Command implements CommandExecutor {
 
                 String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
                 if (!subCommand.execute(sender, newArgs)) {
-                    sender.sendMessage(ColorUtils.getColored(getPlugin().getPrefix()) + " Brug: §b" + subCommand.getUsage(label));
+                    sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " Brug: §b" + subCommand.getUsage(label));
                 }
                 return true;
             }
@@ -60,7 +64,7 @@ public class CoreCommand extends Command implements CommandExecutor {
     private void sendHelpMessage(CommandSender sender, String label) {
         sender.sendMessage("§7§m----------------------------------------");
         sender.sendMessage("");
-        sender.sendMessage(ColorUtils.getColored(getPlugin().getPrefix()) + " §bCommands:");
+        sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " §bCommands:");
         for (SubCommand command : commands) {
             if (!hasPermission(sender, command.getPermission(), false)) continue;
             sender.sendMessage(" §f- §b" + command.getUsage(label) + " §f" + command.getDescription());

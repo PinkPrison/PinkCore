@@ -1,14 +1,18 @@
 package org.pinkprison.pinkcore.core.command.subcore;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.api.command.SubCommand;
 
 public class ReloadCommand extends SubCommand {
 
-    public ReloadCommand(PinkCore plugin) {
+    private final PinkCore plugin;
+
+    public ReloadCommand(JavaPlugin plugin) {
         super(plugin, "Reload the plugin", "reload", "pinkcore.reload", "reload", "rl");
+        this.plugin = (PinkCore) plugin;
     }
 
     /**
@@ -27,8 +31,8 @@ public class ReloadCommand extends SubCommand {
             return true;
         }
 
-        getPlugin().reload();
-        sender.sendMessage(ColorUtils.getColored(getPlugin().getPrefix()) + " Plugin " + getPlugin().getName() + " reloaded!");
+        this.plugin.reload();
+        sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " Plugin " + getPlugin().getName() + " reloaded!");
         return true;
     }
 

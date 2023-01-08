@@ -1,6 +1,7 @@
 package org.pinkprison.pinkcore.api.command;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.command.Command;
 
@@ -10,7 +11,7 @@ public abstract class SubCommand extends Command {
     private final String description;
     private final String[] aliases;
 
-    public SubCommand(PinkCore plugin, String description, String usage, String permission, String... aliases) {
+    public SubCommand(JavaPlugin plugin, String description, String usage, String permission, String... aliases) {
         super(plugin);
 
         this.description = description;
