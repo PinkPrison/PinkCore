@@ -10,9 +10,11 @@ import org.pinkprison.pinkcore.core.config.Loader;
 public class PlayerListener implements Listener {
 
     private final Loader loader;
+    private final boolean sendMessages;
 
     public PlayerListener(Loader loader) {
         this.loader = loader;
+        this.sendMessages = loader.sendJoinLeaveMessages();
     }
 
     /**
@@ -20,9 +22,11 @@ public class PlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        event.setJoinMessage(
-                ColorUtils.getColored(loader.getJoinMessage().replace("%player%", event.getPlayer().getName()))
-        );
+        if (sendMessages) {
+            event.setJoinMessage(
+                    ColorUtils.getColored(loader.getJoinMessage().replace("%player%", event.getPlayer().getName()))
+            );
+        }
     }
 
     /**
@@ -30,8 +34,10 @@ public class PlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        event.setQuitMessage(
-                ColorUtils.getColored(loader.getLeaveMessage().replace("%player%", event.getPlayer().getName()))
-        );
+        if (sendMessages) {
+            event.setQuitMessage(
+                    ColorUtils.getColored(loader.getLeaveMessage().replace("%player%", event.getPlayer().getName()))
+            );
+        }
     }
 }

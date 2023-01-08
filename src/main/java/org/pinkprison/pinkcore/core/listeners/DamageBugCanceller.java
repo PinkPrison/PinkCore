@@ -7,10 +7,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.pinkprison.pinkcore.api.utils.ColorUtils;
 
 @Deprecated
 @Warning(reason = "This class is deprecated, and the listener should only be registered if the issue is Relevant.")
 public class DamageBugCanceller implements Listener {
+
+    private final String errorMessage;
+    private final String fixMessage;
+
+    @Deprecated
+    public DamageBugCanceller(String errorMessage, String fixMessage) {
+        this.errorMessage = errorMessage;
+        this.fixMessage = fixMessage;
+    }
 
     /**
      * Prevents players from damaging other players if they (Intentionally?) are using an exploit.
@@ -35,8 +45,8 @@ public class DamageBugCanceller implements Listener {
 
         if (damage > 2.8) {
             event.setCancelled(true);
-            player.sendMessage("§8[ §f§lDAMAGE BUG §8] §fDet ser ud til du bruger en Damage Bug, du kan derfor ikke slå folk.");
-            player.sendMessage("§8[ §f§lDAMAGE BUG §8] §fFå droppet et sværd til dig, så kan du slå igen.");
+            player.sendMessage(ColorUtils.getColored("&8[ &f&lDAMAGE BUG &8] &f" + errorMessage));
+            player.sendMessage(ColorUtils.getColored("&8[ &f&lDAMAGE BUG &8] &f" + fixMessage));
         }
     }
 

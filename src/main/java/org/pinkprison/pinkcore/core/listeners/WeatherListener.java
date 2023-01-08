@@ -4,8 +4,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.weather.LightningStrikeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
+import org.pinkprison.pinkcore.core.config.Loader;
 
 public class WeatherListener implements Listener {
+    private final boolean allowWeatherChanges;
+    private final boolean allowLightningStrikes;
+
+    public WeatherListener(Loader loader) {
+        this.allowWeatherChanges = loader.allowWeatherChanges();
+        this.allowLightningStrikes = loader.allowLightningStrikes();
+    }
 
     /**
      * Disable changing weather.
@@ -14,7 +22,9 @@ public class WeatherListener implements Listener {
      */
     @EventHandler
     public void onWeatherChange(WeatherChangeEvent event) {
-        event.setCancelled(true);
+        if (!allowWeatherChanges) {
+            event.setCancelled(true);
+        }
     }
 
     /**
@@ -24,6 +34,8 @@ public class WeatherListener implements Listener {
      */
     @EventHandler
     public void onLightningStrike(LightningStrikeEvent event) {
-        event.setCancelled(true);
+        if (!allowLightningStrikes) {
+            event.setCancelled(true);
+        }
     }
 }

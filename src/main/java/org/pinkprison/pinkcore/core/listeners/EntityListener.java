@@ -4,8 +4,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityCreatePortalEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.pinkprison.pinkcore.core.config.Loader;
 
 public class EntityListener implements Listener {
+
+    private final boolean allowPortalCreation;
+    private final boolean allowExplosions;
+
+    public EntityListener(Loader loader) {
+        this.allowPortalCreation = loader.allowPortalCreation();
+        this.allowExplosions = loader.allowExplosions();
+    }
 
     /**
      * Prevents explosions from destroying blocks.
@@ -14,7 +23,9 @@ public class EntityListener implements Listener {
      */
     @EventHandler
     public void onExplode(EntityExplodeEvent event) {
-        event.setCancelled(true);
+        if (!allowExplosions) {
+            event.setCancelled(true);
+        }
     }
 
     /**
@@ -24,6 +35,8 @@ public class EntityListener implements Listener {
      */
     @EventHandler
     public void onEntityPortalCreation(EntityCreatePortalEvent event) {
-        event.setCancelled(true);
+        if (!allowPortalCreation) {
+            event.setCancelled(true);
+        }
     }
 }

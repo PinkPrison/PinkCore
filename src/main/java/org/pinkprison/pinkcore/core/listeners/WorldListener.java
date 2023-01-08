@@ -3,8 +3,14 @@ package org.pinkprison.pinkcore.core.listeners;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.PortalCreateEvent;
+import org.pinkprison.pinkcore.core.config.Loader;
 
 public class WorldListener implements Listener {
+    private final boolean allowPortalCreation;
+
+    public WorldListener(Loader loader) {
+        this.allowPortalCreation = loader.allowPortalCreation();
+    }
 
     /**
      * Disable portal creation.
@@ -13,6 +19,8 @@ public class WorldListener implements Listener {
      */
     @EventHandler
     public void onPortalCreation(PortalCreateEvent event) {
-        event.setCancelled(true);
+        if (!allowPortalCreation) {
+            event.setCancelled(true);
+        }
     }
 }
