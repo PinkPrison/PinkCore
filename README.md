@@ -41,7 +41,7 @@ A Core functionality plugin for projects made by the pinkprison development team
 </repositories>
 <dependencies>
     <dependency>
-        <groupId>com.github.Plexhost.PlexCore</groupId>
+        <groupId>com.github.PinkPrison.PinkCore</groupId>
         <artifactId>packaging</artifactId>
         <version>{VERSION}</version>
         <scope>provided</scope>
