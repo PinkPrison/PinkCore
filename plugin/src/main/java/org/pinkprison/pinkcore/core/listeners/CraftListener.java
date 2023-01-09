@@ -28,7 +28,7 @@ public class CraftListener implements Listener {
         final ItemStack resultItem = event.getRecipe().getResult();
         final Player player = (Player) event.getWhoClicked();
 
-        if (isBlacklisted(resultItem, loader.getAntiCraftBlacklistedItems().toArray(new String[0]))) {
+        if (isBlacklisted(resultItem, loader.getAntiCraftBlacklistedItems().toArray(new Integer[0]))) {
             player.sendMessage(ColorUtils.getColored(loader.getAntiCraftMessage()));
 
             event.setCancelled(true);
@@ -44,9 +44,9 @@ public class CraftListener implements Listener {
      *
      * @return Whether the item is blacklisted or not.
      */
-    private boolean isBlacklisted(ItemStack resultItem, String... blacklistedItemIDs) {
-        for (String itemId : blacklistedItemIDs) {
-            if (resultItem.getType().toString().equalsIgnoreCase(itemId)) {
+    private boolean isBlacklisted(ItemStack resultItem, Integer... blacklistedItemIDs) {
+        for (int itemId : blacklistedItemIDs) {
+            if (resultItem.getType().getId() == itemId) {
                 return true;
             }
         }
