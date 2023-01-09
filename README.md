@@ -27,3 +27,26 @@ A Core functionality plugin for projects made by the pinkprison development team
 - Auto broadcasting of messages to the server, the messages can even have multiple lines 🤓
 
 - For auto broadcasting you can also toggle specific messages in the config.yml so the ones specified only will be broadcasted if enabled 📣
+
+# For Developers
+
+### :exclamation: Implementation:
+
+``` apache maven
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+<dependencies>
+    <dependency>
+        <groupId>com.github.Plexhost.PlexCore</groupId>
+        <artifactId>packaging</artifactId>
+        <version>{VERSION}</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+```
+
+- Make sure that the plugin.yml from your project (soft)depends on the PinkCore-VERSION.jar
