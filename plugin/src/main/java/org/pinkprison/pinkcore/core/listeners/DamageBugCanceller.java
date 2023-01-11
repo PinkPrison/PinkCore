@@ -1,6 +1,5 @@
 package org.pinkprison.pinkcore.core.listeners;
 
-import org.bukkit.Warning;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,8 +9,6 @@ import org.jetbrains.annotations.NotNull;
 import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 
-@Deprecated
-@Warning(reason = "This class is deprecated, and the listener should only be registered if the issue is Relevant.")
 public class DamageBugCanceller implements Listener {
 
     private final String errorMessage;
