@@ -11,6 +11,8 @@ public class Loader {
     //server-messages.leave
     private String leaveMessage;
 
+    //auto-broadcast.enabled
+    private boolean autoBroadcastEnabled;
     //auto-broadcast.interval
     private int autoBroadcastInterval;
     //auto-broadcast.broadcast-messages
@@ -59,6 +61,8 @@ public class Loader {
         //server-messages.leave
         leaveMessage = config.getString("server-messages.leave");
 
+        //auto-broadcast.enabled
+        autoBroadcastEnabled = config.getBoolean("auto-broadcast.enabled");
         //auto-broadcast.interval
         autoBroadcastInterval = config.getInt("auto-broadcast.interval");
         //auto-broadcast.broadcast-messages
@@ -129,7 +133,9 @@ public class Loader {
     public String getLeaveMessage() {
         return leaveMessage;
     }
-
+    public boolean isAutoBroadcastEnabled() {
+        return autoBroadcastEnabled;
+    }
     public int getAutoBroadcastInterval() {
         return autoBroadcastInterval;
     }

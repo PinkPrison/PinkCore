@@ -50,7 +50,7 @@ public final class PinkCore extends JavaPlugin{
 
         registerListeners(loader);
 
-        startAutoBroadcast();
+        startAutoBroadcast(loader.isAutoBroadcastEnabled());
     }
 
     private void registerCommands(Loader loader) {
@@ -88,7 +88,8 @@ public final class PinkCore extends JavaPlugin{
         return HOOKS.getOrDefault(paramHook, false);
     }
 
-    private void startAutoBroadcast() {
+    private void startAutoBroadcast(boolean bool) {
+        if (!bool) return;
         new BukkitRunnable() {
             int messageIndex = 0;
             @Override

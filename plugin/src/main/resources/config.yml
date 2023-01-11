@@ -6,6 +6,9 @@ server-messages:
   leave: "&cGoodbye, %player%!"
 
 auto-broadcast:
+  # Should the plugin automatically broadcast messages to the server?
+  enabled: true
+
   # The Duration between each broadcast in seconds
   interval: 300
 
