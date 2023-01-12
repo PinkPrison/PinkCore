@@ -10,7 +10,7 @@ A Core functionality plugin for projects made by the pinkprison development team
 
 - Easy ways to create Items and Skulls primarily for GUI's :skull:
 
-- Implements TriumpTeams Gui-System for easy use :eagle:
+- Implements TriumphTeams [Gui-System](https://github.com/TriumphTeam/triumph-gui) for easy use :eagle:
 
 # CORE
 
@@ -20,7 +20,7 @@ A Core functionality plugin for projects made by the pinkprison development team
 
 - Functionality for cancelling crafting and placing of certain Items and Blocks :x:
 
-- A Listener that (Hopefully) should fix a minecraft bug that lets players damage more than normal :heart:
+- A Listener that fixes a minecraft bug that lets players damage more than normal :heart:
 
 - A fully functional CommandBlocker that cancels specified commands (fully configurable) if the sender of the Command is not contained in the config.yml 👮
 
