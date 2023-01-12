@@ -62,6 +62,11 @@ public class CommandBlocker implements Listener {
      * @return True if the command is blocked, false if not.
      */
     private boolean isBlocked(String command) {
-        return loader.getBlockedCommands().contains(command);
+        for (String blockedCommand : loader.getBlockedCommands()) {
+            if (command.equalsIgnoreCase(blockedCommand)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
