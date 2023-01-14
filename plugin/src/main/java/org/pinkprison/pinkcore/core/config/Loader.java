@@ -1,10 +1,15 @@
 package org.pinkprison.pinkcore.core.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.pinkprison.pinkcore.PinkCore;
+import org.pinkprison.pinkcore.core.task.AutoBroadcastTask;
 
 import java.util.*;
 
 public class Loader {
+
+    private final PinkCore plugin;
+    private AutoBroadcastTask autoBroadcastTask;
 
     //server-messages.join
     private String joinMessage;
@@ -53,7 +58,9 @@ public class Loader {
     //damage-exploit-disabler.fix-message
     private String damageExploitDisablerFixMessage;
 
-
+    public Loader(PinkCore plugin) {
+        this.plugin = plugin;
+    }
 
     public void load(FileConfiguration config) {
         //server-messages.join
@@ -124,6 +131,15 @@ public class Loader {
         damageExploitDisablerErrorMessage = config.getString("damage-exploit-disabler.error-message");
         //damage-exploit-disabler.fix-message
         damageExploitDisablerFixMessage = config.getString("damage-exploit-disabler.fix-message");
+
+        if (autoBroadcastTask != null) {
+            autoBroadcastTask.stop();
+        }
+
+        if (autoBroadcastEnabled) {
+            autoBroadcastTask = new AutoBroadcastTask(getAutoBroadcastMessages().toArray(new String[0]));
+            autoBroadcastTask.runTaskTimer(plugin, 0L, getAutoBroadcastInterval() * 20L);
+        }
     }
 
     public String getJoinMessage() {
