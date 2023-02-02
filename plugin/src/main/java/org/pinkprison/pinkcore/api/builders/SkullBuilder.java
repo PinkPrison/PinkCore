@@ -14,7 +14,6 @@ import java.util.Base64;
 import java.util.UUID;
 
 /**
- * Deprecated class for creating skulls.
  * @deprecated Use {@link SkullCreator} instead.
  */
 @Deprecated
