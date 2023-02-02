@@ -13,6 +13,11 @@ import java.net.URISyntaxException;
 import java.util.Base64;
 import java.util.UUID;
 
+/**
+ * Deprecated class for creating skulls.
+ * @deprecated Use {@link SkullCreator} instead.
+ */
+@Deprecated
 public class SkullBuilder {
     /** @deprecated */
     @Deprecated
