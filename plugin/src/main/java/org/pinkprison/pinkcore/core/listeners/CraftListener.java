@@ -29,7 +29,7 @@ public class CraftListener implements Listener {
         final Player player = (Player) event.getWhoClicked();
 
         if (isBlacklisted(resultItem, loader.getAntiCraftBlacklistedItems().toArray(new Integer[0]))) {
-            player.sendMessage(ColorUtils.getColored(loader.getAntiCraftMessage()));
+            player.sendMessage(ColorUtils.colorize(loader.getAntiCraftMessage()));
 
             event.setCancelled(true);
             event.setResult(CraftItemEvent.Result.DENY);

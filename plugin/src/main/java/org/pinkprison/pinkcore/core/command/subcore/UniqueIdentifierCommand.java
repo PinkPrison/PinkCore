@@ -36,10 +36,10 @@ public class UniqueIdentifierCommand extends SubCommand {
         }
         final OfflinePlayer player = getPlugin().getServer().getOfflinePlayer(args[0]);
         if (player == null) {
-            sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " Player " + args[0] + " not found!");
+            sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " Player " + args[0] + " not found!");
             return true;
         }
-        sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " UUID for " + player.getName() + " is §c" + player.getUniqueId().toString());
+        sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " UUID for " + player.getName() + " is §c" + player.getUniqueId().toString());
         return true;
     }
 }

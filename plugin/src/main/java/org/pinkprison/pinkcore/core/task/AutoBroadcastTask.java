@@ -21,7 +21,7 @@ public class AutoBroadcastTask extends BukkitRunnable {
             return;
         }
         String currentMessage = messages[index];
-        Bukkit.broadcastMessage(ColorUtils.getColored(currentMessage));
+        Bukkit.broadcastMessage(ColorUtils.colorize(currentMessage));
         index++;
         if(index >= messages.length)
             index = 0;

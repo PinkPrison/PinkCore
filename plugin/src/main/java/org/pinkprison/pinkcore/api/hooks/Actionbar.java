@@ -45,7 +45,7 @@ public class Actionbar extends Hook {
             return; // Player may have logged out
         }
         try {
-            message = ColorUtils.getColored(message);
+            message = ColorUtils.colorize(message);
             Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nmsver + ".entity.CraftPlayer");
             Object craftPlayer = craftPlayerClass.cast(player);
             Object packet;

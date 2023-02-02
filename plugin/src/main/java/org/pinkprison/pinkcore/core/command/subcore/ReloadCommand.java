@@ -32,7 +32,7 @@ public class ReloadCommand extends SubCommand {
         }
 
         this.plugin.reload();
-        sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " Plugin " + getPlugin().getName() + " reloaded!");
+        sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " Plugin " + getPlugin().getName() + " reloaded!");
         return true;
     }
 

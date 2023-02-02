@@ -26,7 +26,7 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         if (sendMessages) {
             event.setJoinMessage(
-                    ColorUtils.getColored(loader.getJoinMessage().replace("%player%", event.getPlayer().getName()))
+                    ColorUtils.colorize(loader.getJoinMessage().replace("%player%", event.getPlayer().getName()))
             );
         }
     }
@@ -38,7 +38,7 @@ public class PlayerListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         if (sendMessages) {
             event.setQuitMessage(
-                    ColorUtils.getColored(loader.getLeaveMessage().replace("%player%", event.getPlayer().getName()))
+                    ColorUtils.colorize(loader.getLeaveMessage().replace("%player%", event.getPlayer().getName()))
             );
         }
     }

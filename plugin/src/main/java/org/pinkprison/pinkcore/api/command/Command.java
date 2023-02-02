@@ -5,6 +5,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.pinkprison.pinkcore.PinkCore;
 
+/**
+ * A command class that can be extended to create commands
+ * with some basic functionality built in.
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 public abstract class Command {
     private final JavaPlugin plugin;
 

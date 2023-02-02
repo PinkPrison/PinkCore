@@ -39,7 +39,7 @@ public class CommandBlocker implements Listener {
                 return;
             }
             event.setCancelled(true);
-            event.getPlayer().sendMessage(ColorUtils.getColored(prefix + loader.getBlockedCommandsMessage()));
+            event.getPlayer().sendMessage(ColorUtils.colorize(prefix + loader.getBlockedCommandsMessage()));
         }
     }
 

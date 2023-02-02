@@ -45,7 +45,7 @@ public class CoreCommand extends Command implements CommandExecutor {
 
                 String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
                 if (!subCommand.execute(sender, newArgs)) {
-                    sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " Brug: §b" + subCommand.getUsage(label));
+                    sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " Brug: §b" + subCommand.getUsage(label));
                 }
                 return true;
             }
@@ -64,7 +64,7 @@ public class CoreCommand extends Command implements CommandExecutor {
     private void sendHelpMessage(CommandSender sender, String label) {
         sender.sendMessage("§7§m----------------------------------------");
         sender.sendMessage("");
-        sender.sendMessage(ColorUtils.getColored(this.plugin.getPrefix()) + " §bCommands:");
+        sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " §bCommands:");
         for (SubCommand command : commands) {
             if (!hasPermission(sender, command.getPermission(), false)) continue;
             sender.sendMessage(" §f- §b" + command.getUsage(label) + " §f" + command.getDescription());
