@@ -2,8 +2,6 @@ package org.pinkprison.pinkcore.api.command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.pinkprison.pinkcore.PinkCore;
-import org.pinkprison.pinkcore.api.command.Command;
 
 public abstract class SubCommand extends Command {
     private final String permission;
