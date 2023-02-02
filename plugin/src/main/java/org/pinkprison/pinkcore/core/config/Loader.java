@@ -21,6 +21,7 @@ public class Loader {
     //auto-broadcast.interval
     private int autoBroadcastInterval;
     //auto-broadcast.broadcast-messages
+    @SuppressWarnings("FieldMayBeFinal")
     private List<String> autoBroadcastMessages = new ArrayList<>();
 
     //anti-craft.message

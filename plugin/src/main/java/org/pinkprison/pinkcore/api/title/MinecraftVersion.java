@@ -2,6 +2,15 @@ package org.pinkprison.pinkcore.api.title;
 
 import org.bukkit.Bukkit;
 
+/**
+ * Minecraft version enum
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 enum MinecraftVersion {
     v1_8("1_8"),
     v1_9("1_9"),

@@ -7,6 +7,15 @@ import org.bukkit.entity.Player;
 import java.lang.reflect.Constructor;
 import java.util.Objects;
 
+/**
+ * Title API for Reflection
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 class ReflectionTitleAPI implements InternalTitleAPI {
 
     ReflectionTitleAPI() {

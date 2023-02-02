@@ -1,5 +1,14 @@
 package org.pinkprison.pinkcore.api.title;
 
+/**
+ * Internal Title API mapping
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 enum InternalAPIMapping {
     REFLECTION(ReflectionTitleAPI.class, MinecraftVersion.v1_12),
     BUKKIT(BukkitTitleAPI.class, MinecraftVersion.v1_17),

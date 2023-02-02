@@ -3,6 +3,15 @@ package org.pinkprison.pinkcore.api.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class for formatting lists as strings.
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 public class StringUtils {
 
     /**

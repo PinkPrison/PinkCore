@@ -6,6 +6,12 @@ import org.pinkprison.pinkcore.api.interfaces.IHook;
 
 /**
  * Implementation of IHook for the dependencies
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
  */
 public abstract class Hook implements IHook {
     private final String name;

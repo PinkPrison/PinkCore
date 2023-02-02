@@ -1,5 +1,14 @@
 package org.pinkprison.pinkcore.api.enums;
 
+/**
+ * Enum for the hooks
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 public enum Hook {
     VAULT(false),
     PLACEHOLDERAPI(false),

@@ -10,6 +10,15 @@ import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+/**
+ * A class for sending actionbars to players
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 public class Actionbar extends Hook {
     private static JavaPlugin plugin;
     private static String nmsver;

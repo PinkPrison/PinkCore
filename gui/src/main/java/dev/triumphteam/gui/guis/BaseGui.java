@@ -112,6 +112,7 @@ public abstract class BaseGui implements InventoryHolder {
 
     // Whether should run the actions from the close and open methods.
     private boolean runCloseAction = true;
+    @SuppressWarnings("FieldMayBeFinal")
     private boolean runOpenAction = true;
 
     /**

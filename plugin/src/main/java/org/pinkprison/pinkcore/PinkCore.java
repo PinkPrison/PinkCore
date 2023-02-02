@@ -15,6 +15,15 @@ import org.pinkprison.pinkcore.core.listeners.*;
 
 import java.util.HashMap;
 
+/**
+ * PinkCore main class
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 public final class PinkCore extends JavaPlugin{
     private static final HashMap<String, Plugin> DEPENDANTS = new HashMap<>();
     private static final HashMap<Hook, Boolean> HOOKS = new HashMap<>();

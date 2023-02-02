@@ -9,6 +9,15 @@ import org.pinkprison.pinkcore.PinkCore;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+/**
+ * ActionBar API
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 public class ActionBarAPI {
     private static final JavaPlugin plugin;
     private static String nsmVersion;

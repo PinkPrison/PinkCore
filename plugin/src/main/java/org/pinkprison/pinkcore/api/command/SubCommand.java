@@ -3,6 +3,15 @@ package org.pinkprison.pinkcore.api.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * A sub command of a {@link Command}.
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 public abstract class SubCommand extends Command {
     private final String permission;
     private final String usage;

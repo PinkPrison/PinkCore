@@ -2,6 +2,15 @@ package org.pinkprison.pinkcore.api.hooks;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * PlaceholderAPI hook
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 public class PlaceholderAPIHook extends Hook{
     public PlaceholderAPIHook() {
         super("PlaceholderAPI", org.pinkprison.pinkcore.api.enums.Hook.PLACEHOLDERAPI);

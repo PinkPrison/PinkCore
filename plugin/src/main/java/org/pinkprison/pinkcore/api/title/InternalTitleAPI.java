@@ -2,6 +2,15 @@ package org.pinkprison.pinkcore.api.title;
 
 import org.bukkit.entity.Player;
 
+/**
+ * An internal title API.
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author WildTooth
+ */
 interface InternalTitleAPI {
     /**
      * Sends a title to a {@link Player}.
