@@ -16,34 +16,43 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Item Builder
+ * @deprecated Use {@link org.pinkprison.pinkcore.api.builders.ItemCreator} instead.
  *
  * <p>
  *     This class is part of the PinkCore project.
  *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
  * </p>
  * @author WildTooth
+ * @see org.pinkprison.pinkcore.api.builders.ItemCreator
  */
-
+@Deprecated
 public class ItemBuilder {
     private final ItemStack item;
     private final Player player;
 
     /* -------------------------------------------------------------------- */
+    /** @deprecated @see {@link ItemCreator#ItemCreator(ItemStack)} */
+    @Deprecated
     public ItemBuilder(ItemStack paramItemStack) {
         this(paramItemStack, null);
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder(ItemStack paramItemStack, Player paramPlayer) {
         this.item = paramItemStack.clone();
         this.player = paramPlayer;
     }
 
     /* -------------------------------------------------------------------- */
+    /** @deprecated @see {@link ItemCreator#ItemCreator(Material, int)} */
+    @Deprecated
     public ItemBuilder(Material paramMaterial, int paramInt) {
         this(paramMaterial, paramInt, null);
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder(Material paramMaterial, int paramInt, Player paramPlayer) {
         this.item = new ItemStack(paramMaterial);
         this.item.setAmount(paramInt);
@@ -51,19 +60,27 @@ public class ItemBuilder {
     }
 
     /* -------------------------------------------------------------------- */
+    /** @deprecated @see {@link ItemCreator#ItemCreator(Material)} */
+    @Deprecated
     public ItemBuilder(Material paramMaterial) {
         this(paramMaterial, paramMaterial.getMaxStackSize());
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder(Material paramMaterial, Player paramPlayer) {
         this(paramMaterial, paramMaterial.getMaxStackSize(), paramPlayer);
     }
 
     /* -------------------------------------------------------------------- */
+    /** @deprecated @see {@link ItemCreator#ItemCreator(Material, int, short)} */
+    @Deprecated
     public ItemBuilder(Material paramMaterial, int paramInt, short paramShort) {
         this(paramMaterial, paramInt, paramShort, null);
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder(Material paramMaterial, int paramInt, short paramShort, Player paramPlayer) {
         this.item = new ItemStack(paramMaterial);
         this.item.setAmount(paramInt);
@@ -71,38 +88,54 @@ public class ItemBuilder {
         this.player = paramPlayer;
     }
 
+    /** @deprecated @see {@link ItemCreator#build()} */
+    @Deprecated
     public ItemStack build() {
         return this.item;
     }
 
+    /** @deprecated @see {@link ItemCreator#material(Material)} */
+    @Deprecated
     public ItemBuilder setType(Material paramMaterial) {
         this.item.setType(paramMaterial);
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public int getAmount() {
         return this.item.getAmount();
     }
 
+    /** @deprecated @see {@link ItemCreator#amount(int)} */
+    @Deprecated
     public ItemBuilder setAmount(int paramInt) {
         this.item.setAmount(paramInt);
         return this;
     }
 
+    /** @deprecated @see {@link ItemCreator#setDurability(short)} */
+    @Deprecated
     public ItemBuilder setDurability(short paramShort) {
         this.item.setDurability(paramShort);
         return this;
     }
 
+    /** @deprecated @see {@link ItemCreator#getDisplayName()} */
+    @Deprecated
     public String getDisplayName() {
         ItemMeta itemMeta = this.item.getItemMeta();
         return itemMeta.getDisplayName();
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder replaceLoreAndDisplayName(String paramString1, String paramString2) {
         return replaceLore(paramString1, format(paramString2)).replaceDisplayName(paramString1, format(paramString2));
     }
 
+    /** @deprecated @see {@link ItemCreator#name(String)} */
+    @Deprecated
     public ItemBuilder setDisplayName(String paramString) {
         ItemMeta itemMeta = this.item.getItemMeta();
         itemMeta.setDisplayName(format(paramString));
@@ -110,6 +143,8 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder replaceDisplayName(String paramString1, String paramString2) {
         ItemMeta itemMeta = this.item.getItemMeta();
         if (itemMeta.hasDisplayName()) {
@@ -119,11 +154,15 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated @see {@link ItemCreator#getLore()} */
+    @Deprecated
     public List<String> getLore() {
         ItemMeta itemMeta = this.item.getItemMeta();
         return (itemMeta.hasLore() && itemMeta.getLore() != null) ? itemMeta.getLore() : new ArrayList<>();
     }
 
+    /** @deprecated @see {@link ItemCreator#setLore(List)} */
+    @Deprecated
     public ItemBuilder setLore(Collection<String> paramCollection) {
         ItemMeta itemMeta = this.item.getItemMeta();
         ArrayList<String> arrayList = new ArrayList<>();
@@ -134,6 +173,8 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated @see {@link ItemCreator#setLore(String...)} */
+    @Deprecated
     public ItemBuilder setLore(String... paramVarArgs) {
         ItemMeta itemMeta = this.item.getItemMeta();
         ArrayList<String> arrayList = new ArrayList<>();
@@ -150,6 +191,8 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder changeLore(int paramInt, String paramString1){
         ItemMeta itemMeta = this.item.getItemMeta();
         if(itemMeta.hasLore()){
@@ -167,6 +210,8 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder replaceLore(String paramString1, String paramString2) {
         ItemMeta itemMeta = this.item.getItemMeta();
         if (itemMeta.hasLore()) {
@@ -184,6 +229,8 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder replaceLore(String paramString, List<String> paramList) {
         ItemMeta itemMeta = this.item.getItemMeta();
         if (itemMeta.hasLore()) {
@@ -206,6 +253,8 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder replaceLore(String paramString, String... paramVarArgs) {
         ItemMeta itemMeta = this.item.getItemMeta();
         if (itemMeta.hasLore()) {
@@ -234,6 +283,8 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder addLore(Collection<String> paramCollection) {
         ItemMeta itemMeta = this.item.getItemMeta();
         if (itemMeta.getLore() == null)
@@ -246,6 +297,8 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder addLore(String... paramVarArgs) {
         ItemMeta itemMeta = this.item.getItemMeta();
         if (itemMeta.getLore() == null)
@@ -264,11 +317,15 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder addEnchantment(Enchantment paramEnchantment, int paramInt) {
         this.item.addUnsafeEnchantment(paramEnchantment, paramInt);
         return this;
     }
 
+    /** @deprecated @see {@link ItemCreator} */
+    @Deprecated
     public ItemBuilder glow(boolean glow) {
         ItemMeta itemMeta = this.item.getItemMeta();
         if (glow) {
@@ -283,6 +340,8 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     public ItemBuilder removeNBT(boolean remove){
         ItemMeta meta = this.item.getItemMeta();
         if(remove)
@@ -293,17 +352,23 @@ public class ItemBuilder {
         return this;
     }
 
+    /** @deprecated */
+    @Deprecated
     private String format(String paramString) {
         if(PinkCore.isHookInitialised(Hook.PLACEHOLDERAPI))
             paramString = PlaceholderAPI.setPlaceholders(player, paramString);
         return ChatColor.translateAlternateColorCodes('&', paramString);
     }
 
+    /** @deprecated */
+    @Deprecated
     public boolean hasDisplayName() {
         ItemMeta itemMeta = this.item.getItemMeta();
         return itemMeta.hasDisplayName();
     }
 
+    /** @deprecated */
+    @Deprecated
     public boolean hasLore() {
         ItemMeta itemMeta = this.item.getItemMeta();
         return itemMeta.hasLore();
