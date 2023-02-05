@@ -17,13 +17,13 @@ public class CoreCommand extends Command implements CommandExecutor {
 
     private final PinkCore plugin;
     private final ArrayList<SubCommand> commands = new ArrayList<>();
-    public CoreCommand(JavaPlugin plugin) {
+
+    public CoreCommand(PinkCore plugin) {
         super(plugin);
         plugin.getCommand("pinkcore").setExecutor(this);
-        this.plugin = (PinkCore) plugin;
+        this.plugin = plugin;
         commands.add(new ReloadCommand(plugin));
         commands.add(new UniqueIdentifierCommand(plugin));
-
     }
 
     @Override
