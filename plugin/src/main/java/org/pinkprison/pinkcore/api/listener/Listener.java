@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.api.events;
+package org.pinkprison.pinkcore.api.listener;
 
 import org.bukkit.event.EventPriority;
 
