@@ -1,5 +1,16 @@
 package org.pinkprison.pinkcore.api.command;
 
+/**
+ * Command result is a class that is used to return the result of a sub command execution.
+ * It contains the sub command that was executed and the result of the execution.
+ *
+ * <p>
+ *     This class is part of the PinkCore project.
+ *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
+ * </p>
+ * @author PandaPeter
+ * @since 2.0.0
+ */
 public class CommandResult {
 
     public enum Result {

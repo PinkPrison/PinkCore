@@ -10,8 +10,6 @@ import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.core.command.subcore.ReloadCommand;
 import org.pinkprison.pinkcore.core.command.subcore.UniqueIdentifierCommand;
 
-import java.util.ArrayList;
-
 public class CoreCommand extends Command implements CommandExecutor {
 
     private final PinkCore plugin;
