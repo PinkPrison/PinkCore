@@ -45,7 +45,7 @@ public abstract class SubCommand extends Command {
      *
      * @return Whether the command was executed successfully.
      */
-    public abstract boolean execute(CommandSender sender, String[] args);
+    public abstract CommandResult execute(CommandSender sender, String[] args);
 
     /**
      * Get the permission of the command.

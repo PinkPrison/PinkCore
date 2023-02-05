@@ -1,8 +1,8 @@
 package org.pinkprison.pinkcore.core.command.subcore;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.pinkprison.pinkcore.PinkCore;
+import org.pinkprison.pinkcore.api.command.CommandResult;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.api.command.SubCommand;
 
@@ -23,18 +23,18 @@ public class ReloadCommand extends SubCommand {
      * @param args The arguments of the command
      */
     @Override
-    public boolean execute(CommandSender sender, String[] args) {
+    public CommandResult execute(CommandSender sender, String[] args) {
         if (args.length != 0) {
-            return false;
+            return CommandResult.wrongUsage(this);
         }
 
         if (!hasPermission(sender, getPermission())) {
-            return true;
+            return CommandResult.noPermission(this);
         }
 
         this.plugin.reload();
         sender.sendMessage(ColorUtils.color(this.plugin.getPrefix()) + " Plugin " + this.plugin.getName() + " reloaded!");
-        return true;
+        return CommandResult.success(this);
     }
 
 }

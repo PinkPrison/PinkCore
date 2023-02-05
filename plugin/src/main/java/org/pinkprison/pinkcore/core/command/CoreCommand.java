@@ -2,16 +2,15 @@ package org.pinkprison.pinkcore.core.command;
 
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.api.command.Command;
+import org.pinkprison.pinkcore.api.command.CommandResult;
 import org.pinkprison.pinkcore.api.command.SubCommand;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 import org.pinkprison.pinkcore.core.command.subcore.ReloadCommand;
 import org.pinkprison.pinkcore.core.command.subcore.UniqueIdentifierCommand;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CoreCommand extends Command implements CommandExecutor {
 
@@ -28,6 +27,21 @@ public class CoreCommand extends Command implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+        CommandResult result = super.execute(sender, args);
+        switch (result.getResult()) {
+            case SUCCESS:
+                return true;
+            case WRONG_USAGE:
+                sender.sendMessage(ColorUtils.color(this.plugin.getPrefix()) + " Brug: §b" + result.getCommand().getUsage(label));
+                return true;
+            case NO_PERMISSION:
+                sender.sendMessage(ColorUtils.color(this.plugin.getPrefix()) + " Du har ikke adgang til at bruge denne kommando.");
+                return true;
+            default:
+                return false;
+        }
+
+        /*
         if (args.length == 0) {
             sendHelpMessage(sender, label);
             return true;
@@ -53,6 +67,7 @@ public class CoreCommand extends Command implements CommandExecutor {
 
         sendHelpMessage(sender, label);
         return true;
+         */
     }
 
     /**

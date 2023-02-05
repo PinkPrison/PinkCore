@@ -3,10 +3,6 @@ package org.pinkprison.pinkcore.api.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.pinkprison.pinkcore.api.command.exceptions.NoPermissionException;
-import org.pinkprison.pinkcore.api.command.exceptions.NoSuchSubCommandException;
-import org.pinkprison.pinkcore.api.command.exceptions.WrongCommandUsageException;
-import org.pinkprison.pinkcore.api.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,37 +40,26 @@ public abstract class Command {
         return false;
     }
 
-    protected void execute(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) throws NoSuchSubCommandException, NoPermissionException, WrongCommandUsageException {
+    protected CommandResult execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            throw new NoSuchSubCommandException("No sub command specified");
+            return CommandResult.noSubCommandFound();
         }
 
-        /*
-         * Hvis vi skal gå performancemæssigt op i det, så bør vi nok erstatte Exceptions med en CommandResult Enum
-         */
         for (SubCommand subCommand : this.commands) {
-            for (String alias : subCommand.getAliases()) {
-                if (!args[0].equalsIgnoreCase(alias)) {
-                    continue;
-                }
-
-                if (!hasPermission(sender, subCommand.getPermission())) {
-                    throw new NoPermissionException("No permission");
-                    //return true;
-                }
-
-                String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
-                if (!subCommand.execute(sender, newArgs)) {
-                    //sender.sendMessage(ColorUtils.color(this.plugin.getPrefix() + " Brug: §b" + subCommand.getUsage(label)));
-                    //return false;
-                    throw new WrongCommandUsageException(subCommand.getUsage(label));
-                }
-                return;
-                //return true;
+            if (!subCommand.containsAlias(args[0])) {
+                continue;
             }
+
+            // TODO: Afklare om denne skal være en del af default Command#execute, eller om man selv skal håndtere det.
+            if (!hasPermission(sender, subCommand.getPermission())) {
+                return CommandResult.noPermission(subCommand);
+            }
+
+            String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
+            return subCommand.execute(sender, newArgs);
         }
 
-        throw new NoSuchSubCommandException("No such sub command");
+        return CommandResult.noSubCommandFound();
     }
 
     /**
