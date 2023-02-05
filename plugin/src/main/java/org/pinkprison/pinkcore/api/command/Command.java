@@ -3,7 +3,9 @@ package org.pinkprison.pinkcore.api.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.pinkprison.pinkcore.api.command.exceptions.NoPermissionException;
 import org.pinkprison.pinkcore.api.command.exceptions.NoSuchSubCommandException;
+import org.pinkprison.pinkcore.api.command.exceptions.WrongCommandUsageException;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
 
 import java.util.ArrayList;
@@ -42,11 +44,14 @@ public abstract class Command {
         return false;
     }
 
-    protected boolean execute(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) throws NoSuchSubCommandException {
+    protected void execute(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) throws NoSuchSubCommandException, NoPermissionException, WrongCommandUsageException {
         if (args.length == 0) {
             throw new NoSuchSubCommandException("No sub command specified");
         }
 
+        /*
+         * Hvis vi skal gå performancemæssigt op i det, så bør vi nok erstatte Exceptions med en CommandResult Enum
+         */
         for (SubCommand subCommand : this.commands) {
             for (String alias : subCommand.getAliases()) {
                 if (!args[0].equalsIgnoreCase(alias)) {
@@ -54,15 +59,18 @@ public abstract class Command {
                 }
 
                 if (!hasPermission(sender, subCommand.getPermission())) {
-                    return true;
+                    throw new NoPermissionException("No permission");
+                    //return true;
                 }
 
                 String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
                 if (!subCommand.execute(sender, newArgs)) {
                     //sender.sendMessage(ColorUtils.color(this.plugin.getPrefix() + " Brug: §b" + subCommand.getUsage(label)));
-                    return false;
+                    //return false;
+                    throw new WrongCommandUsageException(subCommand.getUsage(label));
                 }
-                return true;
+                return;
+                //return true;
             }
         }
 
