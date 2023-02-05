@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.api.enums;
+package org.pinkprison.pinkcore.api.hooks.enums;
 
 /**
  * Enum for the hooks

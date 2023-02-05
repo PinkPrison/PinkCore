@@ -1,4 +1,4 @@
-package org.pinkprison.pinkcore.api.exceptions;
+package org.pinkprison.pinkcore.api.hooks.exceptions;
 
 /**
  * Exception thrown when a hook is not enabled
