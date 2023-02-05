@@ -11,9 +11,9 @@ public class UniqueIdentifierCommand extends SubCommand {
 
     private final PinkCore plugin;
 
-    public UniqueIdentifierCommand(JavaPlugin plugin) {
-        super(plugin, "Provides a UUID from an Offline Player", "uuid", "*", "uuid", "uniqueid", "uniqueidentifier", "uid", "u");
-        this.plugin = (PinkCore) plugin;
+    public UniqueIdentifierCommand(PinkCore plugin) {
+        super(plugin, "Provides a UUID from an Offline Player", "uuid <player>", "*", "uuid");
+        this.plugin = plugin;
     }
 
     /**
@@ -31,15 +31,18 @@ public class UniqueIdentifierCommand extends SubCommand {
         if (args.length != 1) {
             return false;
         }
+
         if (!hasPermission(sender, getPermission())) {
             return true;
         }
+
         final OfflinePlayer player = getPlugin().getServer().getOfflinePlayer(args[0]);
         if (player == null) {
-            sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " Player " + args[0] + " not found!");
+            sender.sendMessage(ColorUtils.color(this.plugin.getPrefix()) + " Player " + args[0] + " not found!");
             return true;
         }
-        sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " UUID for " + player.getName() + " is §c" + player.getUniqueId().toString());
+
+        sender.sendMessage(ColorUtils.color(this.plugin.getPrefix()) + " UUID for " + player.getName() + " is §c" + player.getUniqueId().toString());
         return true;
     }
 }

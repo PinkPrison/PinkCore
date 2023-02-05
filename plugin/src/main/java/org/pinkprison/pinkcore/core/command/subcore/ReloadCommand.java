@@ -10,9 +10,9 @@ public class ReloadCommand extends SubCommand {
 
     private final PinkCore plugin;
 
-    public ReloadCommand(JavaPlugin plugin) {
-        super(plugin, "Reload the plugin", "reload", "pinkcore.reload", "reload", "rl");
-        this.plugin = (PinkCore) plugin;
+    public ReloadCommand(PinkCore plugin) {
+        super(plugin, "Reload the plugin", "reload", "pinkcore.reload", "reload");
+        this.plugin = plugin;
     }
 
     /**
@@ -27,12 +27,13 @@ public class ReloadCommand extends SubCommand {
         if (args.length != 0) {
             return false;
         }
+
         if (!hasPermission(sender, getPermission())) {
             return true;
         }
 
         this.plugin.reload();
-        sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " Plugin " + getPlugin().getName() + " reloaded!");
+        sender.sendMessage(ColorUtils.color(this.plugin.getPrefix()) + " Plugin " + this.plugin.getName() + " reloaded!");
         return true;
     }
 
