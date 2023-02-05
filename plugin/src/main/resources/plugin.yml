@@ -1,11 +1,12 @@
 name: PinkCore
 version: '${project.pluginVersion}'
 main: org.pinkprison.pinkcore.PinkCore
-authors: [ Champen_V1ldtand ]
+authors: [ Champen_V1ldtand, PandaPeter ]
 description: Simple core functionality for plugins used by pinkprison.org
 softdepend:
   - Vault
   - PlaceholderAPI
+
 commands:
     pinkcore:
         description: Core command for PinkCore
