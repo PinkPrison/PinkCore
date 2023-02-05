@@ -13,7 +13,7 @@ import java.util.List;
  * </p>
  * @author WildTooth
  */
-public class Time {
+public class TimeUtils {
 
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
