@@ -25,7 +25,7 @@ public class Actionbar extends Hook {
     private static boolean useOldMethods = false;
 
     public Actionbar() {
-        super("Actionbar", org.pinkprison.pinkcore.api.enums.Hook.ACTIONBAR);
+        super("Actionbar", org.pinkprison.pinkcore.api.hooks.enums.Hook.ACTIONBAR);
     }
 
 

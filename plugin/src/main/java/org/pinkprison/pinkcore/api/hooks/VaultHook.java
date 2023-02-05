@@ -8,7 +8,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.pinkprison.pinkcore.api.exceptions.HookNotEnabledException;
+import org.pinkprison.pinkcore.api.hooks.exceptions.HookNotEnabledException;
 
 /**
  * Vault hook
@@ -30,7 +30,7 @@ public class VaultHook extends Hook {
 
 
     public VaultHook() {
-        super("Vault", org.pinkprison.pinkcore.api.enums.Hook.VAULT);
+        super("Vault", org.pinkprison.pinkcore.api.hooks.enums.Hook.VAULT);
     }
 
     /**
