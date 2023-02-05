@@ -4,11 +4,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.pinkprison.pinkcore.api.enums.Hook;
 import org.pinkprison.pinkcore.api.hooks.Actionbar;
+import org.pinkprison.pinkcore.api.hooks.Hook;
 import org.pinkprison.pinkcore.api.hooks.PlaceholderAPIHook;
 import org.pinkprison.pinkcore.api.hooks.VaultHook;
-import org.pinkprison.pinkcore.api.interfaces.IHook;
 import org.pinkprison.pinkcore.core.command.CoreCommand;
 import org.pinkprison.pinkcore.core.config.Loader;
 import org.pinkprison.pinkcore.core.listeners.*;
@@ -26,7 +25,7 @@ import java.util.HashMap;
  */
 public final class PinkCore extends JavaPlugin{
     private static final HashMap<String, Plugin> DEPENDANTS = new HashMap<>();
-    private static final HashMap<Hook, Boolean> HOOKS = new HashMap<>();
+    private static final HashMap<org.pinkprison.pinkcore.api.hooks.enums.Hook, Boolean> HOOKS = new HashMap<>();
     private Loader loader;
     private static PinkCore INSTANCE;
 
@@ -75,12 +74,12 @@ public final class PinkCore extends JavaPlugin{
     }
 
     private void initialiseHooks(){
-        IHook[] hooks = new IHook[]{
+        Hook[] hooks = new Hook[]{
                 new VaultHook(),
                 new PlaceholderAPIHook(),
                 new Actionbar(),
         };
-        for(IHook hook : hooks)
+        for(Hook hook : hooks)
             HOOKS.put(hook.getEnum(), hook.init(this));
     }
 
