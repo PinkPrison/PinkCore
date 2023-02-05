@@ -15,8 +15,8 @@ public class CommandBlocker implements CommandExecutor {
     private final String prefix;
     private final Loader loader;
 
-
     public CommandBlocker(PinkCore plugin, Loader loader) {
+        plugin.getCommand("blockedcommands").setExecutor(this);
         this.prefix = plugin.getPrefix();
         this.loader = loader;
     }
