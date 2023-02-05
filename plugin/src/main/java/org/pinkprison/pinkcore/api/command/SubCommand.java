@@ -27,6 +27,16 @@ public abstract class SubCommand extends Command {
         this.aliases = aliases;
     }
 
+    protected boolean containsAlias(String alias) {
+        for (String a : this.aliases) {
+            if (a.equalsIgnoreCase(alias)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * The method that is called when the command is executed.
      *

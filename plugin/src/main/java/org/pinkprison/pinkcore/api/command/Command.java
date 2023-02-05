@@ -3,7 +3,11 @@ package org.pinkprison.pinkcore.api.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.pinkprison.pinkcore.PinkCore;
+import org.pinkprison.pinkcore.api.command.exceptions.NoSuchSubCommandException;
+import org.pinkprison.pinkcore.api.utils.ColorUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A command class that can be extended to create commands
@@ -16,10 +20,53 @@ import org.pinkprison.pinkcore.PinkCore;
  * @author WildTooth
  */
 public abstract class Command {
+
+    private final ArrayList<SubCommand> commands = new ArrayList<>();
     private final JavaPlugin plugin;
 
     public Command(JavaPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    protected void addSubCommand(SubCommand command) {
+        this.commands.add(command);
+    }
+
+    protected boolean containsAlias(String alias) {
+        for (SubCommand command : this.commands) {
+            if (command.containsAlias(alias)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected boolean execute(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) throws NoSuchSubCommandException {
+        if (args.length == 0) {
+            throw new NoSuchSubCommandException("No sub command specified");
+        }
+
+        for (SubCommand subCommand : this.commands) {
+            for (String alias : subCommand.getAliases()) {
+                if (!args[0].equalsIgnoreCase(alias)) {
+                    continue;
+                }
+
+                if (!hasPermission(sender, subCommand.getPermission())) {
+                    return true;
+                }
+
+                String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
+                if (!subCommand.execute(sender, newArgs)) {
+                    //sender.sendMessage(ColorUtils.color(this.plugin.getPrefix() + " Brug: §b" + subCommand.getUsage(label)));
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        throw new NoSuchSubCommandException("No such sub command");
     }
 
     /**
