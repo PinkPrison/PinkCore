@@ -24,43 +24,43 @@ import java.util.HashMap;
  * @author WildTooth
  */
 public final class PinkCore extends JavaPlugin{
+
     private static final HashMap<String, Plugin> DEPENDANTS = new HashMap<>();
     private static final HashMap<org.pinkprison.pinkcore.api.hooks.enums.Hook, Boolean> HOOKS = new HashMap<>();
-    private Loader loader;
     private static PinkCore INSTANCE;
+
+    private final Loader loader = new Loader(this);
 
     @Override
     public void onEnable() {
-        saveDefaultConfig();
         INSTANCE = this;
-        loader = new Loader(this);
-        loader.load(getConfig());
+        this.saveDefaultConfig();
+        this.getLoader().load(getConfig());
 
-        Bukkit.getLogger().info("Loading dependant plugins.");
-        for(Plugin dependant : getServer().getPluginManager().getPlugins()){
+        this.getLogger().info("Loading dependant plugins.");
+        for (Plugin dependant : getServer().getPluginManager().getPlugins()) {
             PluginDescriptionFile pdf = dependant.getDescription();
-            if(pdf.getDepend().contains(getName()) || pdf.getSoftDepend().contains(getName()))
+            if (pdf.getDepend().contains(getName()) || pdf.getSoftDepend().contains(getName())) {
                 DEPENDANTS.put(dependant.getName(), dependant);
+            }
         }
-        Bukkit.getLogger().info(String.format("Loaded dependants (%d): %s", DEPENDANTS.size(), DEPENDANTS.values()));
+        this.getLogger().info(String.format("Loaded dependants (%d): %s", DEPENDANTS.size(), DEPENDANTS.values()));
 
-        Bukkit.getLogger().info("Initialising hooks...");
-        initialiseHooks();
+        this.getLogger().info("Initialising hooks...");
+        this.initialiseHooks();
 
-        registerCommands(loader);
-
-        registerListeners(loader);
+        this.registerCommands(loader);
+        this.registerListeners(loader);
     }
 
     private void registerCommands(Loader loader) {
-        getLogger().info("Loading commands...");
-        getCommand("blockedcommands").setExecutor(
-                new org.pinkprison.pinkcore.core.command.CommandBlocker(this, loader));
+        this.getLogger().info("Loading commands...");
+        new org.pinkprison.pinkcore.core.command.CommandBlocker(this, loader);
         new CoreCommand(getInstance());
     }
 
-    private void registerListeners(Loader loader){
-        Bukkit.getLogger().info("Registering listeners...");
+    private void registerListeners(Loader loader) {
+        this.getLogger().info("Registering listeners...");
         new DamageBugCanceller(this,
                     loader.getDamageExploitDisablerErrorMessage(),
                     loader.getDamageExploitDisablerFixMessage());
@@ -73,14 +73,16 @@ public final class PinkCore extends JavaPlugin{
         new WorldListener(this, loader);
     }
 
-    private void initialiseHooks(){
-        Hook[] hooks = new Hook[]{
+    private void initialiseHooks() {
+        Hook[] hooks = new Hook[] {
                 new VaultHook(),
                 new PlaceholderAPIHook(),
-                new Actionbar(),
+                new Actionbar()
         };
-        for(Hook hook : hooks)
+
+        for (Hook hook : hooks) {
             HOOKS.put(hook.getEnum(), hook.init(this));
+        }
     }
 
     public static boolean isHookInitialised(Hook paramHook) {
@@ -88,8 +90,8 @@ public final class PinkCore extends JavaPlugin{
     }
 
     public void reload() {
-        reloadConfig();
-        loader.load(getConfig());
+        this.reloadConfig();
+        this.getLoader().load(getConfig());
     }
 
     public String getPrefix() {
@@ -97,7 +99,7 @@ public final class PinkCore extends JavaPlugin{
     }
 
     public Loader getLoader() {
-        return loader;
+        return this.loader;
     }
 
     public static PinkCore getInstance() {
