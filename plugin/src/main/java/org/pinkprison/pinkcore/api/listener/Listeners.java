@@ -40,6 +40,7 @@ public class Listeners implements org.bukkit.event.Listener {
                     for (Method method : classInfo.load().getDeclaredMethods()) {
                         if (method.isAnnotationPresent(Listener.class)) {
                             Listener annotation = method.getAnnotation(Listener.class);
+                            if (!annotation.doNotRegister()) continue;
                             RegisteredListener rl = new RegisteredListener(this, (listener, event) -> {
                                 try {
                                     method.invoke(null, event);

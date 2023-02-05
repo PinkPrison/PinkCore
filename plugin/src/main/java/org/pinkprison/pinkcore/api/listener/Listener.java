@@ -24,4 +24,5 @@ import java.lang.annotation.Target;
 public @interface Listener {
     EventPriority priority() default EventPriority.NORMAL;
     boolean ignoreCancelled() default false;
+    boolean doNotRegister() default false;
 }
