@@ -10,6 +10,7 @@ package org.pinkprison.pinkcore.api.hooks.exceptions;
  * @author WildTooth
  */
 public final class HookNotEnabledException extends RuntimeException {
+
     /**
      * Constructs a new HookNotEnabledException with the specified detail message.
      *

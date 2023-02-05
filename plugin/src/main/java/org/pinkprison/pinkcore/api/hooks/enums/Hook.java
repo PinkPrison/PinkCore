@@ -11,8 +11,7 @@ package org.pinkprison.pinkcore.api.hooks.enums;
  */
 public enum Hook {
     VAULT(false),
-    PLACEHOLDERAPI(false),
-    ACTIONBAR(true);
+    PLACEHOLDERAPI(false);
 
     private final boolean isBuiltIn;
 
