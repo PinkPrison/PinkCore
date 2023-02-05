@@ -15,14 +15,13 @@ import java.util.ArrayList;
 public class CoreCommand extends Command implements CommandExecutor {
 
     private final PinkCore plugin;
-    private final ArrayList<SubCommand> commands = new ArrayList<>();
 
     public CoreCommand(PinkCore plugin) {
         super(plugin);
         plugin.getCommand("pinkcore").setExecutor(this);
         this.plugin = plugin;
-        commands.add(new ReloadCommand(plugin));
-        commands.add(new UniqueIdentifierCommand(plugin));
+        super.addSubCommand(new ReloadCommand(plugin));
+        super.addSubCommand(new UniqueIdentifierCommand(plugin));
     }
 
     @Override
@@ -38,6 +37,7 @@ public class CoreCommand extends Command implements CommandExecutor {
                 sender.sendMessage(ColorUtils.color(this.plugin.getPrefix()) + " Du har ikke adgang til at bruge denne kommando.");
                 return true;
             default:
+                sendHelpMessage(sender, label);
                 return false;
         }
 
@@ -79,8 +79,8 @@ public class CoreCommand extends Command implements CommandExecutor {
     private void sendHelpMessage(CommandSender sender, String label) {
         sender.sendMessage("§7§m----------------------------------------");
         sender.sendMessage("");
-        sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " §bCommands:");
-        for (SubCommand command : commands) {
+        sender.sendMessage(ColorUtils.color(this.plugin.getPrefix()) + " §bCommands:");
+        for (SubCommand command : super.getSubCommands()) {
             if (!hasPermission(sender, command.getPermission(), false)) continue;
             sender.sendMessage(" §f- §b" + command.getUsage(label) + " §f" + command.getDescription());
         }
