@@ -4,6 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.pinkprison.pinkcore.api.events.Listeners;
 import org.pinkprison.pinkcore.api.hooks.Actionbar;
 import org.pinkprison.pinkcore.api.hooks.Hook;
 import org.pinkprison.pinkcore.api.hooks.PlaceholderAPIHook;
@@ -48,6 +50,12 @@ public final class PinkCore extends JavaPlugin{
 
         this.getLogger().info("Initialising hooks...");
         this.initialiseHooks();
+
+        new BukkitRunnable() {
+            public @Override void run() {
+                new Listeners().register();
+            }
+        }.runTaskLater(this, 1);
 
         this.registerCommands(loader);
         this.registerListeners(loader);
