@@ -62,6 +62,10 @@ public abstract class Command {
         return CommandResult.noSubCommandFound();
     }
 
+    public ArrayList<SubCommand> getSubCommands() {
+        return commands;
+    }
+
     /**
      * Check if the {@link CommandSender} is a {@link Player}
      *
