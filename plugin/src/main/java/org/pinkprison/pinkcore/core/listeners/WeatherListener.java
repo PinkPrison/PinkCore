@@ -8,6 +8,7 @@ import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.core.config.Loader;
 
 public class WeatherListener implements Listener {
+
     private final boolean allowWeatherChanges;
     private final boolean allowLightningStrikes;
 

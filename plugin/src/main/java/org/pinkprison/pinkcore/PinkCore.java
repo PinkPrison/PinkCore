@@ -1,12 +1,10 @@
 package org.pinkprison.pinkcore;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.pinkprison.pinkcore.api.events.Listeners;
-import org.pinkprison.pinkcore.api.hooks.Actionbar;
 import org.pinkprison.pinkcore.api.hooks.Hook;
 import org.pinkprison.pinkcore.api.hooks.PlaceholderAPIHook;
 import org.pinkprison.pinkcore.api.hooks.VaultHook;
@@ -85,7 +83,6 @@ public final class PinkCore extends JavaPlugin{
         Hook[] hooks = new Hook[] {
                 new VaultHook(),
                 new PlaceholderAPIHook(),
-                new Actionbar()
         };
 
         for (Hook hook : hooks) {

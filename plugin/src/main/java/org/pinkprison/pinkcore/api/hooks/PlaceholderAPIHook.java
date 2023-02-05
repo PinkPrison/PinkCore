@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author WildTooth
  */
 public class PlaceholderAPIHook extends Hook{
+
     public PlaceholderAPIHook() {
         super("PlaceholderAPI", org.pinkprison.pinkcore.api.hooks.enums.Hook.PLACEHOLDERAPI);
     }
