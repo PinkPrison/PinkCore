@@ -24,7 +24,7 @@ public class BlockListener implements Listener {
         final Player player = event.getPlayer();
 
         if (isBlacklisted(block, loader.getAntiPlaceBlacklistedBlocks().toArray(new Integer[0]))) {
-            player.sendMessage(ColorUtils.colorize(loader.getAntiPlaceMessage()));
+            player.sendMessage(ColorUtils.color(loader.getAntiPlaceMessage()));
             event.setCancelled(true);
         }
     }

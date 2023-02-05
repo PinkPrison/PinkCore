@@ -45,8 +45,8 @@ public class DamageBugCanceller implements Listener {
 
         if (damage > 2.8) {
             event.setCancelled(true);
-            player.sendMessage(ColorUtils.colorize("&8[ &f&lDAMAGE BUG &8] &f" + errorMessage));
-            player.sendMessage(ColorUtils.colorize("&8[ &f&lDAMAGE BUG &8] &f" + fixMessage));
+            player.sendMessage(ColorUtils.color("&8[ &f&lDAMAGE BUG &8] &f" + errorMessage));
+            player.sendMessage(ColorUtils.color("&8[ &f&lDAMAGE BUG &8] &f" + fixMessage));
         }
     }
 
