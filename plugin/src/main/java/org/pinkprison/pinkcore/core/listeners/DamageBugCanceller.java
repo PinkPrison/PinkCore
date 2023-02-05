@@ -14,7 +14,6 @@ public class DamageBugCanceller implements Listener {
     private final String errorMessage;
     private final String fixMessage;
 
-
     public DamageBugCanceller(PinkCore plugin, String errorMessage, String fixMessage) {
         if (plugin.getLoader().enableDamageExploitFixer()) {
             plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -67,5 +66,4 @@ public class DamageBugCanceller implements Listener {
         }
         return true;
     }
-
 }

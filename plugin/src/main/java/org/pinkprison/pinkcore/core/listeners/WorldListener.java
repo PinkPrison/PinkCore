@@ -7,6 +7,7 @@ import org.pinkprison.pinkcore.PinkCore;
 import org.pinkprison.pinkcore.core.config.Loader;
 
 public class WorldListener implements Listener {
+
     private final boolean allowPortalCreation;
 
     public WorldListener(PinkCore plugin, Loader loader) {
