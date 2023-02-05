@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.pinkprison.pinkcore.PinkCore;
+import org.pinkprison.pinkcore.api.utils.ColorUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -19,6 +20,7 @@ import java.lang.reflect.Method;
  * @author WildTooth
  */
 public class ActionBarAPI {
+
     private static final JavaPlugin plugin;
     private static String nsmVersion;
     private static boolean useOldMethods = false;
@@ -47,6 +49,7 @@ public class ActionBarAPI {
 
         // Call the event, if cancelled don't send Action Bar
         try {
+            message = ColorUtils.color(message);
             Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nsmVersion + ".entity.CraftPlayer");
             Object craftPlayer = craftPlayerClass.cast(player);
             Object packet;
@@ -70,13 +73,14 @@ public class ActionBarAPI {
                             chatMessageType = obj;
                         }
                     }
-                    Object chatCompontentText = chatComponentTextClass.getConstructor(new Class<?>[]{String.class}).newInstance(message);
-                    packet = packetPlayOutChatClass.getConstructor(new Class<?>[]{iChatBaseComponentClass, chatMessageTypeClass}).newInstance(chatCompontentText, chatMessageType);
-                } catch (ClassNotFoundException cnfe) {
-                    Object chatCompontentText = chatComponentTextClass.getConstructor(new Class<?>[]{String.class}).newInstance(message);
-                    packet = packetPlayOutChatClass.getConstructor(new Class<?>[]{iChatBaseComponentClass, byte.class}).newInstance(chatCompontentText, (byte) 2);
+                    Object chatComponentText = chatComponentTextClass.getConstructor(new Class<?>[]{String.class}).newInstance(message);
+                    packet = packetPlayOutChatClass.getConstructor(new Class<?>[]{iChatBaseComponentClass, chatMessageTypeClass}).newInstance(chatComponentText, chatMessageType);
+                } catch (ClassNotFoundException ignored) {
+                    Object chatComponentText = chatComponentTextClass.getConstructor(new Class<?>[]{String.class}).newInstance(message);
+                    packet = packetPlayOutChatClass.getConstructor(new Class<?>[]{iChatBaseComponentClass, byte.class}).newInstance(chatComponentText, (byte) 2);
                 }
             }
+
             Method craftPlayerHandleMethod = craftPlayerClass.getDeclaredMethod("getHandle");
             Object craftPlayerHandle = craftPlayerHandleMethod.invoke(craftPlayer);
             Field playerConnectionField = craftPlayerHandle.getClass().getDeclaredField("playerConnection");
@@ -101,7 +105,7 @@ public class ActionBarAPI {
         sendActionBar(player, message);
 
         if (duration >= 0) {
-            // Sends empty message at the end of the duration. Allows messages shorter than 3 seconds, ensures precision.
+            // Sends empty message at the end of the duration. Allow messages shorter than 3 seconds, ensures precision.
             new BukkitRunnable() {
                 @Override
                 public void run() {
@@ -110,7 +114,7 @@ public class ActionBarAPI {
             }.runTaskLater(plugin, duration + 1);
         }
 
-        // Re-sends the messages every 3 seconds so it doesn't go away from the player's screen.
+        // Re-sends the messages every 3 seconds, so it doesn't go away from the player's screen.
         while (duration > 40) {
             duration -= 40;
             new BukkitRunnable() {
