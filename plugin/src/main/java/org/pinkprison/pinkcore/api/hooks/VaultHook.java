@@ -37,11 +37,11 @@ public class VaultHook extends Hook {
      *
      * Initialising the {@link VaultHook}.
      *
-     * @param paramPlugin The core plugin.
+     * @param plugin The core plugin.
      * @return if the hook is established currently.
      */
     @Override
-    public boolean init(JavaPlugin paramPlugin) {
+    public boolean init(JavaPlugin plugin) {
         if (!super.isEnabled()) return false;
 
         RegisteredServiceProvider<Economy> rspEconomy = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
