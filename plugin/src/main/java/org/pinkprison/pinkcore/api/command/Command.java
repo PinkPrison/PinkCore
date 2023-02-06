@@ -16,7 +16,8 @@ import java.util.Arrays;
  *     This class is part of the PinkCore project.
  *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
  * </p>
- * @author WildTooth
+ * @author PandaPeter
+ * @since 2.0.0
  */
 public abstract class Command {
 
@@ -63,7 +64,7 @@ public abstract class Command {
     }
 
     public ArrayList<SubCommand> getSubCommands() {
-        return commands;
+        return this.commands;
     }
 
     /**
@@ -108,6 +109,6 @@ public abstract class Command {
      * @return The plugin
      */
     protected JavaPlugin getPlugin() {
-        return plugin;
+        return this.plugin;
     }
 }

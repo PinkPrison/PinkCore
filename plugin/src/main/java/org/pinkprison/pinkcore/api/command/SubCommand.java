@@ -10,9 +10,11 @@ import org.bukkit.plugin.java.JavaPlugin;
  *     This class is part of the PinkCore project.
  *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
  * </p>
- * @author WildTooth
+ * @author PandaPeter
+ * @since 2.0.0
  */
 public abstract class SubCommand extends Command {
+
     private final String permission;
     private final String usage;
     private final String description;
@@ -27,9 +29,15 @@ public abstract class SubCommand extends Command {
         this.aliases = aliases;
     }
 
+    /**
+     * Check if the sub command contains the given alias.
+     *
+     * @param alias The alias to check.
+     * @return Whether the sub command contains the alias.
+     */
     protected boolean containsAlias(String alias) {
-        for (String a : this.aliases) {
-            if (a.equalsIgnoreCase(alias)) {
+        for (String s : this.aliases) {
+            if (s.equalsIgnoreCase(alias)) {
                 return true;
             }
         }
@@ -43,7 +51,7 @@ public abstract class SubCommand extends Command {
      * @param sender The sender of the command.
      * @param args The arguments of the command.
      *
-     * @return Whether the command was executed successfully.
+     * @return The CommandResult after the execution of the method.
      */
     public abstract CommandResult execute(CommandSender sender, String[] args);
 
