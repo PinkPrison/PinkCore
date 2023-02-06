@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
  *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
  * </p>
  * @author WildTooth
+ * @since 1.0.0
  */
 enum MinecraftVersion {
     v1_8("1_8"),

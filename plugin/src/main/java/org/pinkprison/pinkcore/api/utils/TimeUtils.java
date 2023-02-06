@@ -12,6 +12,7 @@ import java.util.List;
  *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
  * </p>
  * @author WildTooth
+ * @since 1.0.0
  */
 public class TimeUtils {
 

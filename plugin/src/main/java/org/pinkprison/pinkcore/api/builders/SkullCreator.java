@@ -33,6 +33,7 @@ import java.util.UUID;
  * </p>
  *
  * @author Dean B on 12/28/2016.
+ * @since 1.4.0
  */
 public class SkullCreator {
 

@@ -8,6 +8,7 @@ package org.pinkprison.pinkcore.api.hooks.exceptions;
  *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
  * </p>
  * @author WildTooth
+ * @since 1.0.0
  */
 public final class HookNotEnabledException extends RuntimeException {
 
