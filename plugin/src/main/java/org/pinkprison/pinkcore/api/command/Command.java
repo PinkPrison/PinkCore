@@ -28,43 +28,38 @@ public abstract class Command {
         this.plugin = plugin;
     }
 
+    /**
+     * Add a sub command to the command
+     *
+     * @param command The sub command to add
+     */
     protected void addSubCommand(SubCommand command) {
         this.commands.add(command);
     }
 
-    protected boolean containsAlias(String alias) {
-        for (SubCommand command : this.commands) {
-            if (command.containsAlias(alias)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
+    /**
+     * Executes the command
+     *
+     * @param sender The sender of the command
+     * @param args The arguments of the command
+     * @return The CommandResult after the execution of the method
+     */
     protected CommandResult execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
             return CommandResult.noSubCommandFound();
         }
 
-        for (SubCommand subCommand : this.commands) {
-            if (!subCommand.containsAlias(args[0])) {
-                continue;
-            }
-
-            if (!hasPermission(sender, subCommand.getPermission())) {
-                return CommandResult.noPermission(subCommand);
-            }
-
-            String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
-            return subCommand.execute(sender, newArgs);
+        SubCommand subCommand = getSubCommandFromAliasOrNull(args[0]);
+        if (subCommand == null) {
+            return CommandResult.noSubCommandFound();
         }
 
-        return CommandResult.noSubCommandFound();
-    }
+        if (!hasPermission(sender, subCommand.getPermission())) {
+            return CommandResult.noPermission(subCommand);
+        }
 
-    public ArrayList<SubCommand> getSubCommands() {
-        return this.commands;
+        String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
+        return subCommand.execute(sender, newArgs);
     }
 
     /**
@@ -78,8 +73,16 @@ public abstract class Command {
         return sender instanceof Player;
     }
 
+    /**
+     * Check if the {@link CommandSender} is a {@link Player}
+     * and send a message if not
+     *
+     * @param sender The {@link CommandSender} to check
+     * @param notPlayerMessage The message to send if the sender is not a player
+     * @return true if the sender is a player, false otherwise
+     */
     protected boolean isPlayer(CommandSender sender, String notPlayerMessage) {
-        if (isPlayer(sender)) return true;
+        if (this.isPlayer(sender)) return true;
         sender.sendMessage(ColorUtils.color(notPlayerMessage));
         return false;
     }
@@ -97,10 +100,28 @@ public abstract class Command {
         return sender.hasPermission(permission);
     }
 
+    /**
+     * Check if the {@link CommandSender} has the specified permission
+     * and send a message if not
+     *
+     * @param sender The {@link CommandSender} to check
+     * @param permission The permission to check
+     * @param noPermissionMessage The message to send if the sender does not have the permission
+     * @return true if the sender has the permission, false otherwise
+     */
     protected boolean hasPermission(CommandSender sender, String permission, String noPermissionMessage) {
-        if (hasPermission(sender, permission)) return true;
+        if (this.hasPermission(sender, permission)) return true;
         sender.sendMessage(ColorUtils.color(noPermissionMessage));
         return false;
+    }
+
+    /**
+     * Get the sub commands
+     *
+     * @return The sub commands
+     */
+    protected ArrayList<SubCommand> getSubCommands() {
+        return this.commands;
     }
 
     /**
@@ -110,5 +131,22 @@ public abstract class Command {
      */
     protected JavaPlugin getPlugin() {
         return this.plugin;
+    }
+
+
+    /**
+     * Get a sub command from an alias
+     *
+     * @param alias The alias to check
+     * @return The sub command if found, null otherwise
+     */
+    private SubCommand getSubCommandFromAliasOrNull(String alias) {
+        for (SubCommand command : this.commands) {
+            if (command.containsAlias(alias)) {
+                return command;
+            }
+        }
+
+        return null;
     }
 }
