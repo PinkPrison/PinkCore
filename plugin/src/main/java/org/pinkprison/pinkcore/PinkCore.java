@@ -11,6 +11,7 @@ import org.pinkprison.pinkcore.api.hooks.VaultHook;
 import org.pinkprison.pinkcore.core.command.CoreCommand;
 import org.pinkprison.pinkcore.core.config.Loader;
 import org.pinkprison.pinkcore.core.listeners.*;
+import org.pinkprison.pinkcore.core.metrics.Metrics;
 
 import java.util.HashMap;
 
@@ -54,6 +55,8 @@ public final class PinkCore extends JavaPlugin{
                 new Listeners().register();
             }
         }.runTaskLater(this, 1);
+
+        Metrics metrics = new Metrics(this, 17663);
 
         this.registerCommands(loader);
         this.registerListeners(loader);
