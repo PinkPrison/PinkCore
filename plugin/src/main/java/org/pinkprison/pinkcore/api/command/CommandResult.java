@@ -1,7 +1,7 @@
 package org.pinkprison.pinkcore.api.command;
 
 /**
- * Command result is a class that is used to return the result of a sub command execution.
+ * CommandResult is a class that is used to return the result of a sub command execution.
  * It contains the sub command that was executed and the result of the execution.
  *
  * <p>
@@ -28,26 +28,59 @@ public class CommandResult {
         this.result = result;
     }
 
+    /**
+     * Returns the command that was executed.
+     *
+     * @return The command that was executed.
+     */
     public SubCommand getCommand() {
         return this.command;
     }
 
+    /**
+     * Returns the result of the command execution.
+     *
+     * @return The result of the command execution.
+     */
     public Result getResult() {
         return this.result;
     }
 
+    /**
+     * Returns a CommandResult with the result {@link Result#NO_SUB_COMMAND_FOUND}.
+     *
+     * @return The CommandResult.
+     */
     public static CommandResult noSubCommandFound() {
         return new CommandResult(null, Result.NO_SUB_COMMAND_FOUND);
     }
 
+    /**
+     * Returns a CommandResult with the result {@link Result#NO_PERMISSION}.
+     *
+     * @param command The command that was executed.
+     * @return The CommandResult.
+     */
     public static CommandResult noPermission(SubCommand command) {
         return new CommandResult(command, Result.NO_PERMISSION);
     }
 
+    /**
+     * Returns a CommandResult with the result {@link Result#WRONG_USAGE}.
+     *
+     * @param command The command that was executed.
+     * @return The CommandResult.
+     */
     public static CommandResult wrongUsage(SubCommand command) {
         return new CommandResult(command, Result.WRONG_USAGE);
     }
 
+    /**
+     * Returns a CommandResult with the result {@link Result#SUCCESS}.
+     *
+     * @param command The command that was executed.
+     * @return The CommandResult.
+     */
     public static CommandResult success(SubCommand command) {
         return new CommandResult(command, Result.SUCCESS);
     }
