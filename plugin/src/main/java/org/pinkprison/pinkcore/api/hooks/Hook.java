@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
  *     <a href="https://github.com/PinkPrison/PinkCore">PinkCore</a> is licensed under the MIT license.
  * </p>
  * @author WildTooth
- * @since 1.0.0
+ * @since 2.0.0
  */
 public abstract class Hook {
 
