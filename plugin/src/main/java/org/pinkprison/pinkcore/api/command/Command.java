@@ -3,6 +3,7 @@ package org.pinkprison.pinkcore.api.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.pinkprison.pinkcore.api.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +51,6 @@ public abstract class Command {
                 continue;
             }
 
-            // TODO: Afklare om denne skal være en del af default Command#execute, eller om man selv skal håndtere det.
             if (!hasPermission(sender, subCommand.getPermission())) {
                 return CommandResult.noPermission(subCommand);
             }
@@ -72,23 +72,14 @@ public abstract class Command {
      * @param sender The {@link CommandSender} to check
      *
      * @return true if the sender is a player, false otherwise
-     * (always sends a message to the sender if false)
      */
     protected boolean isPlayer(CommandSender sender) {
-        return isPlayer(sender, true);
+        return sender instanceof Player;
     }
 
-    /**
-     * Check if the {@link CommandSender} is a {@link Player}
-     *
-     * @param sender The {@link CommandSender} to check
-     * @param notify Whether to send a message to the sender if false
-     *
-     * @return true if the sender is a player, false otherwise
-     */
-    protected boolean isPlayer(CommandSender sender, boolean notify) {
-        if (sender instanceof Player) return true;
-        if (notify) sender.sendMessage("Du skal være en spiller for at bruge denne kommando.");
+    protected boolean isPlayer(CommandSender sender, String notPlayerMessage) {
+        if (isPlayer(sender)) return true;
+        sender.sendMessage(ColorUtils.color(notPlayerMessage));
         return false;
     }
 
@@ -99,24 +90,15 @@ public abstract class Command {
      * @param permission The permission to check
      *
      * @return true if the sender has the permission, false otherwise
-     * (always sends a message to the sender if false)
      */
     protected boolean hasPermission(CommandSender sender, String permission) {
-        return hasPermission(sender, permission, true);
+        if (permission.equals("")) return true;
+        return sender.hasPermission(permission);
     }
 
-    /**
-     * Check if the {@link CommandSender} has the specified permission
-     *
-     * @param sender The {@link CommandSender} to check
-     * @param permission The permission to check
-     * @param notify Whether to send a message to the sender if false
-     *
-     * @return true if the sender has the permission, false otherwise
-     */
-    protected boolean hasPermission(CommandSender sender, String permission, boolean notify) {
-        if (sender.hasPermission(permission)) return true;
-        if (notify) sender.sendMessage("Du har ikke adgang til denne kommando.");
+    protected boolean hasPermission(CommandSender sender, String permission, String noPermissionMessage) {
+        if (hasPermission(sender, permission)) return true;
+        sender.sendMessage(ColorUtils.color(noPermissionMessage));
         return false;
     }
 
