@@ -30,13 +30,14 @@ public final class PinkCore extends JavaPlugin{
     private static final HashMap<org.pinkprison.pinkcore.api.hooks.enums.Hook, Boolean> HOOKS = new HashMap<>();
     private static PinkCore INSTANCE;
 
-    private final Loader loader = new Loader(this);
+    private Loader loader;
 
     @Override
     public void onEnable() {
         INSTANCE = this;
         this.saveDefaultConfig();
-        this.getLoader().load(getConfig());
+        this.loader = new Loader(this, this.getConfig());
+        this.getLoader().load();
 
         this.getLogger().info("Loading dependant plugins.");
         for (Plugin dependant : getServer().getPluginManager().getPlugins()) {
@@ -99,7 +100,7 @@ public final class PinkCore extends JavaPlugin{
 
     public void reload() {
         this.reloadConfig();
-        this.getLoader().load(getConfig());
+        this.getLoader().load();
     }
 
     public String getPrefix() {

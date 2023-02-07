@@ -10,73 +10,42 @@ public class Loader {
 
     private final PinkCore plugin;
     private AutoBroadcastTask autoBroadcastTask;
+    private final FileConfiguration config;
 
-    //server-messages.join
-    private String joinMessage;
-    //server-messages.leave
-    private String leaveMessage;
-
-    //auto-broadcast.enabled
-    private boolean autoBroadcastEnabled;
-    //auto-broadcast.interval
-    private int autoBroadcastInterval;
-    //auto-broadcast.broadcast-messages
-    @SuppressWarnings("FieldMayBeFinal")
-    private List<String> autoBroadcastMessages = new ArrayList<>();
-
-    //anti-craft.message
-    private String antiCraftMessage;
-    //anti-craft.blacklisted-items
-    private List<Integer> antiCraftBlacklistedItems = new ArrayList<>();
-
-    //anti-place.message
-    private String antiPlaceMessage;
-    //anti-place.blacklisted-blocks
-    private List<Integer> antiPlaceBlacklistedBlocks = new ArrayList<>();
-
-    //blocked-commands.message
-    private String blockedCommandsMessage;
-    //blocked-commands.allowed-players
-    private List<String> blockedCommandsAllowedPlayers = new ArrayList<>();
-    //blocked-commands.blacklisted-commands
-    private List<String> blockedCommandsBlacklistedCommands = new ArrayList<>();
-
-    //canceller-toggling.allow-portal-creation
-    private boolean allowPortalCreation;
-    //canceller-toggling.allow-explosions
-    private boolean allowExplosions;
-    //canceller-toggling.allow-weather-changes
-    private boolean allowWeatherChanges;
-    //canceller-toggling.allow-lightning-strikes
-    private boolean allowLightningStrikes;
-    //canceller-toggling.send-activity-message
-    private boolean sendActivityMessage;
-
-    //damage-exploit-disabler.enabled
-    private boolean damageExploitDisabler;
-    //damage-exploit-disabler.error-message
-    private String damageExploitDisablerErrorMessage;
-    //damage-exploit-disabler.fix-message
-    private String damageExploitDisablerFixMessage;
-
-    public Loader(PinkCore plugin) {
+    public Loader(PinkCore plugin, FileConfiguration config) {
         this.plugin = plugin;
+        this.config = config;
     }
 
-    public void load(FileConfiguration config) {
-        //server-messages.join
-        joinMessage = config.getString("server-messages.join");
-        //server-messages.leave
-        leaveMessage = config.getString("server-messages.leave");
+    public void load() {
+        if (autoBroadcastTask != null) {
+            autoBroadcastTask.stop();
+        }
 
-        //auto-broadcast.enabled
-        autoBroadcastEnabled = config.getBoolean("auto-broadcast.enabled");
-        //auto-broadcast.interval
-        autoBroadcastInterval = config.getInt("auto-broadcast.interval");
-        //auto-broadcast.broadcast-messages
-        autoBroadcastMessages.clear();
-        for (String key : config.getConfigurationSection("auto-broadcast.broadcast-messages").getKeys(false)) {
-            List<String> tmp = config.getStringList("auto-broadcast.broadcast-messages." + key);
+        if (isAutoBroadcastEnabled()) {
+            autoBroadcastTask = new AutoBroadcastTask(getAutoBroadcastMessages().toArray(new String[0]));
+            autoBroadcastTask.runTaskTimer(plugin, 0L, getAutoBroadcastInterval() * 20L);
+        }
+    }
+
+    public String getJoinMessage() {
+        return this.config.getString("server-messages.join");
+    }
+
+    public String getLeaveMessage() {
+        return this.config.getString("server-messages.leave");
+    }
+    public boolean isAutoBroadcastEnabled() {
+        return this.config.getBoolean("auto-broadcast.enabled");
+    }
+    public int getAutoBroadcastInterval() {
+        return this.config.getInt("auto-broadcast.interval");
+    }
+
+    public List<String> getAutoBroadcastMessages() {
+        List<String> autoBroadcastMessages = new ArrayList<>();
+        for (String key : this.config.getConfigurationSection("auto-broadcast.broadcast-messages").getKeys(false)) {
+            List<String> tmp = this.config.getStringList("auto-broadcast.broadcast-messages." + key);
             StringBuilder sb = new StringBuilder();
             for (String s : tmp) {
                 sb.append(s).append("\n");
@@ -93,131 +62,66 @@ public class Loader {
                 autoBroadcastMessages.add(sb.toString());
             }
         }
-        //anti-craft.message
-        antiCraftMessage = config.getString("anti-craft.message");
-        //anti-craft.blacklisted-items
-        antiCraftBlacklistedItems.clear();
-        antiCraftBlacklistedItems = config.getIntegerList("anti-craft.blacklisted-items");
-
-        //anti-place.message
-        antiPlaceMessage = config.getString("anti-place.message");
-        //anti-place.blacklisted-blocks
-        antiPlaceBlacklistedBlocks.clear();
-        antiPlaceBlacklistedBlocks = config.getIntegerList("anti-place.blacklisted-blocks");
-
-        //blocked-commands.message
-        blockedCommandsMessage = config.getString("blocked-commands.message");
-        //blocked-commands.allowed-players
-        blockedCommandsAllowedPlayers.clear();
-        blockedCommandsAllowedPlayers = config.getStringList("blocked-commands.allowed-players");
-
-        //blocked-commands.blacklisted-commands
-        blockedCommandsBlacklistedCommands.clear();
-        blockedCommandsBlacklistedCommands = config.getStringList("blocked-commands.blacklisted-commands");
-
-        //canceller-toggling.allow-portal-creation
-        allowPortalCreation = config.getBoolean("canceller-toggling.allow-portal-creation");
-        //canceller-toggling.allow-explosions
-        allowExplosions = config.getBoolean("canceller-toggling.allow-explosions");
-        //canceller-toggling.allow-weather-changes
-        allowWeatherChanges = config.getBoolean("canceller-toggling.allow-weather-changes");
-        //canceller-toggling.allow-lightning-strikes
-        allowLightningStrikes = config.getBoolean("canceller-toggling.allow-lightning-strikes");
-        //canceller-toggling.send-activity-message
-        sendActivityMessage = config.getBoolean("canceller-toggling.send-activity-message");
-
-        //damage-exploit-disabler.enabled
-        damageExploitDisabler = config.getBoolean("damage-exploit-disabler.enabled");
-        //damage-exploit-disabler.error-message
-        damageExploitDisablerErrorMessage = config.getString("damage-exploit-disabler.error-message");
-        //damage-exploit-disabler.fix-message
-        damageExploitDisablerFixMessage = config.getString("damage-exploit-disabler.fix-message");
-
-        if (autoBroadcastTask != null) {
-            autoBroadcastTask.stop();
-        }
-
-        if (autoBroadcastEnabled) {
-            autoBroadcastTask = new AutoBroadcastTask(getAutoBroadcastMessages().toArray(new String[0]));
-            autoBroadcastTask.runTaskTimer(plugin, 0L, getAutoBroadcastInterval() * 20L);
-        }
-    }
-
-    public String getJoinMessage() {
-        return joinMessage;
-    }
-
-    public String getLeaveMessage() {
-        return leaveMessage;
-    }
-    public boolean isAutoBroadcastEnabled() {
-        return autoBroadcastEnabled;
-    }
-    public int getAutoBroadcastInterval() {
-        return autoBroadcastInterval;
-    }
-
-    public List<String> getAutoBroadcastMessages() {
         return autoBroadcastMessages;
     }
 
     public String getAntiCraftMessage() {
-        return antiCraftMessage;
+        return this.config.getString("anti-craft.message");
     }
 
     public List<Integer> getAntiCraftBlacklistedItems() {
-        return antiCraftBlacklistedItems;
+        return this.config.getIntegerList("anti-place.blacklisted-blocks");
     }
 
     public String getAntiPlaceMessage() {
-        return antiPlaceMessage;
+        return this.config.getString("anti-place.message");
     }
 
     public List<Integer> getAntiPlaceBlacklistedBlocks() {
-        return antiPlaceBlacklistedBlocks;
+        return this.config.getIntegerList("anti-place.blacklisted-blocks");
     }
 
     public String getBlockedCommandsMessage() {
-        return blockedCommandsMessage;
+        return this.config.getString("blocked-commands.message");
     }
 
     public List<String> getAllowedPlayers() {
-        return blockedCommandsAllowedPlayers;
+        return this.config.getStringList("blocked-commands.allowed-players");
     }
 
     public List<String> getBlockedCommands() {
-        return blockedCommandsBlacklistedCommands;
+        return this.config.getStringList("blocked-commands.blacklisted-commands");
     }
 
     public boolean allowPortalCreation() {
-        return allowPortalCreation;
+        return this.config.getBoolean("canceller-toggling.allow-portal-creation");
     }
 
     public boolean allowExplosions() {
-        return allowExplosions;
+        return this.config.getBoolean("canceller-toggling.allow-explosions");
     }
 
     public boolean allowWeatherChanges() {
-        return allowWeatherChanges;
+        return this.config.getBoolean("canceller-toggling.allow-weather-changes");
     }
 
     public boolean allowLightningStrikes() {
-        return allowLightningStrikes;
+        return this.config.getBoolean("canceller-toggling.allow-lightning-strikes");
     }
 
     public boolean sendJoinLeaveMessages() {
-        return sendActivityMessage;
+        return this.config.getBoolean("canceller-toggling.send-activity-message");
     }
 
     public boolean enableDamageExploitFixer() {
-        return damageExploitDisabler;
+        return this.config.getBoolean("damage-exploit-disabler.enabled");
     }
 
     public String getDamageExploitDisablerErrorMessage() {
-        return damageExploitDisablerErrorMessage;
+        return this.config.getString("damage-exploit-disabler.error-message");
     }
 
     public String getDamageExploitDisablerFixMessage() {
-        return damageExploitDisablerFixMessage;
+        return this.config.getString("damage-exploit-disabler.fix-message");
     }
 }
