@@ -20,6 +20,15 @@ public abstract class SubCommand extends Command {
     private final String description;
     private final String[] aliases;
 
+    /**
+     * Create a new sub command.
+
+     * @param plugin The plugin that the command is registered to.
+     * @param description The description of the command.
+     * @param usage The usage of the command.
+     * @param permission The permission of the command, use "" if there should be no permission.
+     * @param aliases The aliases of the command.
+     */
     public SubCommand(JavaPlugin plugin, String description, String usage, String permission, String... aliases) {
         super(plugin);
 

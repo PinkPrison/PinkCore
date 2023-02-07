@@ -54,7 +54,7 @@ public abstract class Command {
             return CommandResult.noSubCommandFound();
         }
 
-        if (!hasPermission(sender, subCommand.getPermission())) {
+        if (!this.hasPermission(sender, subCommand.getPermission())) {
             return CommandResult.noPermission(subCommand);
         }
 
@@ -66,7 +66,6 @@ public abstract class Command {
      * Check if the {@link CommandSender} is a {@link Player}
      *
      * @param sender The {@link CommandSender} to check
-     *
      * @return true if the sender is a player, false otherwise
      */
     protected boolean isPlayer(CommandSender sender) {
