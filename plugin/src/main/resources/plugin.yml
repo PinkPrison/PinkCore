@@ -13,7 +13,3 @@ commands:
         description: Core command for PinkCore
         usage: /pinkcore
         permission: pinkcore.command.pinkcore
-    blockedcommands:
-        description: Does nothing, but essential for blocking commands
-        usage: /blockedcommands
-        permission: "*"
