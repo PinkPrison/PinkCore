@@ -36,36 +36,8 @@ public class CoreCommand extends Command implements CommandExecutor {
                 return true;
             default:
                 sendHelpMessage(sender, label);
-                return false;
-        }
-
-        /*
-        if (args.length == 0) {
-            sendHelpMessage(sender, label);
-            return true;
-        }
-
-        for (SubCommand subCommand : commands) {
-            for (String alias : subCommand.getAliases()) {
-                if (!args[0].equalsIgnoreCase(alias)) {
-                    continue;
-                }
-
-                if (!hasPermission(sender, subCommand.getPermission())) {
-                    return true;
-                }
-
-                String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
-                if (!subCommand.execute(sender, newArgs)) {
-                    sender.sendMessage(ColorUtils.colorize(this.plugin.getPrefix()) + " Brug: §b" + subCommand.getUsage(label));
-                }
                 return true;
-            }
         }
-
-        sendHelpMessage(sender, label);
-        return true;
-         */
     }
 
     /**
