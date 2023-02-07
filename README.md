@@ -1,7 +1,7 @@
 # PinkCore
 [![](https://jitpack.io/v/PinkPrison/PinkCore.svg)](https://jitpack.io/#PinkPrison/PinkCore)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FPinkPrison%2FPinkCore&count_bg=%23FF00F6&title_bg=%23555555&icon=java.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
-[![Discord](https://img.shields.io/discord/708090408201476126?color=7289DA&label=Discord&logo=Discord&logoColor=white)](https://discord.gg/CxNVKtyKhr)
+[![Discord](https://img.shields.io/discord/1072269834211049542?color=7289DA&label=Discord&logo=Discord&logoColor=white)](https://discord.gg/CxNVKtyKhr)
 ![GitHub](https://img.shields.io/github/license/PinkPrison/PinkCore?color=blue&label=License&logo=GitHub)
 
 A Core functionality plugin for projects made by the pinkprison development team
