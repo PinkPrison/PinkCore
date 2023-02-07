@@ -139,7 +139,7 @@ public abstract class Command {
      * @param alias The alias to check
      * @return The sub command if found, null otherwise
      */
-    private SubCommand getSubCommandFromAliasOrNull(String alias) {
+    protected SubCommand getSubCommandFromAliasOrNull(String alias) {
         for (SubCommand command : this.commands) {
             if (command.containsAlias(alias)) {
                 return command;
