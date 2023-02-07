@@ -132,7 +132,6 @@ public abstract class Command {
         return this.plugin;
     }
 
-
     /**
      * Get a sub command from an alias
      *
