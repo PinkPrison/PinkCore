@@ -59,11 +59,11 @@ public final class PinkCore extends JavaPlugin{
 
         Metrics metrics = new Metrics(this, 17663);
 
-        this.registerCommands(loader);
+        this.registerCommands();
         this.registerListeners(loader);
     }
 
-    private void registerCommands(Loader loader) {
+    private void registerCommands() {
         this.getLogger().info("Loading commands...");
         new CoreCommand(getInstance());
     }
@@ -93,8 +93,8 @@ public final class PinkCore extends JavaPlugin{
         }
     }
 
-    public static boolean isHookInitialised(Hook paramHook) {
-        return HOOKS.getOrDefault(paramHook, false);
+    public static boolean isHookInitialised(Hook hook) {
+        return HOOKS.getOrDefault(hook, false);
     }
 
     public void reload() {
