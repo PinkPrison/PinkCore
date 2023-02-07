@@ -3,6 +3,7 @@ version: '${project.pluginVersion}'
 main: org.pinkprison.pinkcore.PinkCore
 authors: [ Champen_V1ldtand, PandaPeter ]
 description: Simple core functionality for plugins used by pinkprison.org
+website: https://github.com/PinkPrison/PinkCore
 softdepend:
   - Vault
   - PlaceholderAPI
@@ -11,7 +12,6 @@ commands:
     pinkcore:
         description: Core command for PinkCore
         usage: /pinkcore
-        aliases: [pinkcore, pc, core, pink]
         permission: pinkcore.command.pinkcore
     blockedcommands:
         description: Does nothing, but essential for blocking commands
