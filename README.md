@@ -6,11 +6,13 @@ A Core functionality plugin for projects made by the pinkprison development team
 
 ### :exclamation: API Includes the following:
 
-- An easier way to send actionbars and (sub)titles to players :tulip:
+- An easier way to send actionbars and (sub)titles to players
 
-- Easy ways to create Items and Skulls primarily for GUI's :skull:
+- Easy ways to create Items and Skulls primarily for GUI's
 
-- Implements TriumphTeams [Gui-System](https://github.com/TriumphTeam/triumph-gui) for easy use :eagle:
+- Implements TriumphTeams [Gui-System](https://github.com/TriumphTeam/triumph-gui) for easy use
+
+- Various utillities
 
 # CORE
 
