@@ -19,22 +19,37 @@ import java.util.Objects;
  */
 public class TitleAPI {
 
-    /** @deprecated */
-    @Deprecated
+    /**
+     * Sends a title to a {@link Player}.
+     * @apiNote This method should not be confused with
+     * {@link TitleAPI#sendTitle(Player, String, String, int, int, int)}.
+     * This method is used to send only a title to a player, not a subtitle.
+     *
+     * @param player  The player to send the title to.
+     * @param fadeIn  The time in ticks for the title to fade in.
+     * @param stay    The time in ticks for the title to stay on screen.
+     * @param fadeOut The time in ticks for the title to fade out.
+     * @param message The title to send.
+     *
+     * @see TitleAPI#sendTitle(Player, String, String, int, int, int)
+     */
     public static void sendTitle(Player player, int fadeIn, int stay, int fadeOut, String message) {
         sendTitle(player, message, null, fadeIn, stay, fadeOut);
     }
 
-    /** @deprecated */
-    @Deprecated
+    /**
+     * Sends a subtitle to a {@link Player}.
+     *
+     * @param player  The player to send the subtitle to.
+     * @param fadeIn  The time in ticks for the subtitle to fade in.
+     * @param stay    The time in ticks for the subtitle to stay on screen.
+     * @param fadeOut The time in ticks for the subtitle to fade out.
+     * @param message The subtitle to send.
+     *
+     * @see TitleAPI#sendTitle(Player, String, String, int, int, int)
+     */
     public static void sendSubtitle(Player player, int fadeIn, int stay, int fadeOut, String message) {
         sendTitle(player, null, message, fadeIn, stay, fadeOut);
-    }
-
-    /** @deprecated */
-    @Deprecated
-    public static void sendFullTitle(Player player, int fadeIn, int stay, int fadeOut, String title, String subtitle) {
-        sendTitle(player, title, subtitle, fadeIn, stay, fadeOut);
     }
 
     /**
