@@ -26,30 +26,30 @@ public class TitleAPI {
      * This method is used to send only a title to a player, not a subtitle.
      *
      * @param player  The player to send the title to.
+     * @param title The title to send.
      * @param fadeIn  The time in ticks for the title to fade in.
      * @param stay    The time in ticks for the title to stay on screen.
      * @param fadeOut The time in ticks for the title to fade out.
-     * @param message The title to send.
      *
      * @see TitleAPI#sendTitle(Player, String, String, int, int, int)
      */
-    public static void sendTitle(Player player, int fadeIn, int stay, int fadeOut, String message) {
-        sendTitle(player, message, null, fadeIn, stay, fadeOut);
+    public static void sendTitle(Player player, String title, int fadeIn, int stay, int fadeOut) {
+        sendTitle(player, title, null, fadeIn, stay, fadeOut);
     }
 
     /**
      * Sends a subtitle to a {@link Player}.
      *
      * @param player  The player to send the subtitle to.
+     * @param subtitle The subtitle to send.
      * @param fadeIn  The time in ticks for the subtitle to fade in.
      * @param stay    The time in ticks for the subtitle to stay on screen.
      * @param fadeOut The time in ticks for the subtitle to fade out.
-     * @param message The subtitle to send.
      *
      * @see TitleAPI#sendTitle(Player, String, String, int, int, int)
      */
-    public static void sendSubtitle(Player player, int fadeIn, int stay, int fadeOut, String message) {
-        sendTitle(player, null, message, fadeIn, stay, fadeOut);
+    public static void sendSubtitle(Player player, String subtitle, int fadeIn, int stay, int fadeOut) {
+        sendTitle(player, null, subtitle, fadeIn, stay, fadeOut);
     }
 
     /**
@@ -112,7 +112,7 @@ public class TitleAPI {
      *
      * @param player The {@link Player} to send the empty title to.
      */
-    public void clearTitle(Player player) {
+    public static void clearTitle(Player player) {
         sendTitle(player, "", "", 0, 0, 0);
     }
 
@@ -127,7 +127,7 @@ public class TitleAPI {
             Object handle = player.getClass().getMethod("getHandle").invoke(player);
             Object playerConnection = handle.getClass().getField("playerConnection").get(handle);
             playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
     }
 
     /**
