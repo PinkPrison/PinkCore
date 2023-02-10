@@ -4,37 +4,48 @@
 [![Discord](https://img.shields.io/discord/1072269834211049542?color=7289DA&label=Discord&logo=Discord&logoColor=white)](https://discord.gg/CxNVKtyKhr)
 ![GitHub](https://img.shields.io/github/license/PinkPrison/PinkCore?color=blue&label=License&logo=GitHub)
 
-A Core functionality plugin for projects made by the pinkprison development team
+En kernefunktionalitets plugin for projekter lavet af PinkPrison's udviklingshold.
+
+# Table of Contents
+
+- [API](#api)
+- [Core](#core)
+- [For Udviklere](#for-udviklere)
+- [Eksempler](#eksempler)
 
 # API
 
-### :exclamation: API Includes the following:
+### :exclamation: API indeholder følgende:
 
-- An easier way to send actionbars and (sub)titles to players
+- En nemmere måde at sende actionbars og (sub)titles til spillere
 
-- Easy ways to create Items and Skulls primarily for GUI's
+- Nemme måder at oprette Items og Skulls
 
-- Implements TriumphTeams [Gui-System](https://github.com/TriumphTeam/triumph-gui) for easy use
+- Implementerer TriumphTeams [Gui-System](https://github.com/TriumphTeam/triumph-gui) for nem brug
 
-- Various utillities
+- Kommando system til at oprette kommandoer
 
-# CORE
+- Støtte af PlaceholderAPI og Vault
 
-### :exclamation: CORE Includes the following:
+- Forskellige hjælpefunktioner
 
-- Listeners to disable Weather events, Explosions and some World events 💥
+# Core
 
-- Functionality for cancelling crafting and placing of certain Items and Blocks :x:
+### :exclamation: Core indeholder følgende
 
-- A Listener that fixes a minecraft bug that lets players damage more than normal :heart:
+- Listeners til at deaktivere Weather events, Explosions og nogle World events 💥
 
-- A fully functional CommandBlocker that cancels specified commands (fully configurable) if the sender of the Command is not contained in the config.yml 👮
+- Funktionalitet til at annullere crafting og placering af visse Items og Blocks :x:
 
-- Auto broadcasting of messages to the server, the messages can even have multiple lines 🤓
+- En Listener , der fikser en Minecraft-fejl, der tillader spillere at skade mere end normalt :heart:
 
-- For auto broadcasting you can also toggle specific messages in the config.yml so the ones specified only will be broadcasted if enabled 📣
+- En fuldt funktionel CommandBlocker, der annullerer angivne kommandoer (fuldt konfigurerbar) hvis afsenderen af kommandoen ikke er indeholdt i config.yml 👮
 
-# For Developers
+- Automatisk broadcast af beskeder til serveren, beskederne kan endda have flere linjer 🤓
+
+- Til automatisk broadcast kan du også vælge specifikke beskeder i config.yml, så de angivne kun vil blive broadcastet hvis aktiveret 📣
+
+# For Udviklere
 
 ### :exclamation: Implementation:
 
@@ -45,6 +56,9 @@ A Core functionality plugin for projects made by the pinkprison development team
         <url>https://jitpack.io</url>
     </repository>
 </repositories>
+```
+
+``` apache maven
 <dependencies>
     <dependency>
         <groupId>com.github.PinkPrison.PinkCore</groupId>
@@ -55,43 +69,48 @@ A Core functionality plugin for projects made by the pinkprison development team
 </dependencies>
 ```
 
+- Husk at dit plugins `plugin.yml` skal `(soft)depends` dette plugin `PinkCore`
+
 ### :exclamation: Version Information:
 
+*Link til nyeste releases: https://github.com/PinkPrison/PinkCore/releases/*
+
 ```yaml
-╔═══════════════════════════════════════════════════════════════════╗
-║                              PINKCORE                             ║
-╠═════════════╦═════════════════╦════════════════╦══════════════════╣
-║   Version   ║   Pre-Release   ║   Updateable   ║   Downloadable   ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║      ?      ║        ?        ║        ?       ║         ?        ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║    1.4.0    ║        No       ║       No       ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║    1.3.6    ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║    1.3.5    ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║    1.3.4    ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║    1.3.3    ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║    1.3.2    ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║    1.3.1    ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║    1.3.0    ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║    1.2.1    ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║     1.2     ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║     1.1     ║        No       ║       Yes      ║        Yes       ║
-╠═════════════╬═════════════════╬════════════════╬══════════════════╣
-║     1.0     ║        No       ║       Yes      ║        No        ║
-╚═════════════╩═════════════════╩════════════════╩══════════════════╝
+╔════════════════════════════════════════════════════════════════════╗
+║                               PINKCORE                             ║
+╠══════════════╦═════════════════╦════════════════╦══════════════════╣
+║   Version    ║   Pre-Release   ║   Updateable   ║   Downloadable   ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║      ?       ║        ?        ║        ?       ║         ?        ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║ 2.0.0-alpha1 ║        Yes      ║       No       ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║    1.4.0     ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║    1.3.6     ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║    1.3.5     ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║    1.3.4     ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║    1.3.3     ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║    1.3.2     ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║    1.3.1     ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║    1.3.0     ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║    1.2.1     ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║     1.2      ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║     1.1      ║        No       ║       Yes      ║        Yes       ║
+╠══════════════╬═════════════════╬════════════════╬══════════════════╣
+║     1.0      ║        No       ║       Yes      ║        No        ║
+╚══════════════╩═════════════════╩════════════════╩══════════════════╝
 ```
 
-*Link til nyeste release: https://github.com/PinkPrison/PinkCore/releases/tag/1.4.0*
+# Eksempler
 
-
-- Make sure that the plugin.yml from your project (soft)depends on the PinkCore-VERSION.jar
+Eksempler vil komme på et senere tidspunkt når version 2.0.0 er blevet udgivet.
