@@ -24,56 +24,56 @@ public class TimeUtils {
      * @return long value of current unix in seconds
      */
     public static long currentUnixInSeconds(){
-        return System.currentTimeMillis()/1000;
+        return System.currentTimeMillis() / 1000;
     }
 
     /**
      * Get formatted time string.
      *
-     * @param n the unix timestamp
+     * @param unixTime the unix timestamp
      * @return the formatted time string
      */
-    public static String getFormattedTime(long n){
-        return getFormattedTime((int)n, true);
+    public static String getFormattedTime(long unixTime){
+        return getFormattedTime((int) unixTime, true);
     }
 
     /**
      * Get formatted time string.
      *
-     * @param n           the unix timestamp
+     * @param unixTime the unix timestamp
      * @param withSeconds with or without seconds
      * @return the formatted time string
      */
-    public static String getFormattedTime(long n, boolean withSeconds){
-        return getFormattedTime((int)n, withSeconds);
+    public static String getFormattedTime(long unixTime, boolean withSeconds){
+        return getFormattedTime((int) unixTime, withSeconds);
     }
 
     /**
      * Get formatted time string.
      *
-     * @param n the unix timestamp in seconds
+     * @param unixTimeInSeconds the unix timestamp in seconds
      * @return the formatted time string
      */
-    public static String getFormattedTime(int n){
-        return getFormattedTime(n, true);
+    public static String getFormattedTime(int unixTimeInSeconds){
+        return getFormattedTime(unixTimeInSeconds, true);
     }
 
     /**
      * Get formatted time string.
      *
-     * @param n           the unix timestamp in seconds
+     * @param unixTimeInSeconds the unix timestamp in seconds
      * @param withSeconds with or without seconds
      * @return the formatted time string
      */
-    public static String getFormattedTime(int n, boolean withSeconds){
-        if (n <= 0) {
+    public static String getFormattedTime(int unixTimeInSeconds, boolean withSeconds){
+        if (unixTimeInSeconds <= 0) {
             return "0 sekunder";
         }
 
-        int days = (int) Math.floor( n / 86400 );
-        int hours = (int) Math.floor( ( n / 3600 ) - ( days * 24 ) );
-        int minutes = (int) Math.floor( ( n / 60 ) - ( ( hours + ( days * 24 ) ) * 60 ) );
-        int seconds = (int) Math.floor( n - ( ( days * 86400 ) + ( hours * 3600 ) + ( minutes * 60 ) ) );
+        int days = (int) Math.floor( unixTimeInSeconds / 86400 );
+        int hours = (int) Math.floor( ( unixTimeInSeconds / 3600 ) - ( days * 24 ) );
+        int minutes = (int) Math.floor( ( unixTimeInSeconds / 60 ) - ( ( hours + ( days * 24 ) ) * 60 ) );
+        int seconds = (int) Math.floor( unixTimeInSeconds - ( ( days * 86400 ) + ( hours * 3600 ) + ( minutes * 60 ) ) );
         List<String> stringList = new ArrayList<>();
         if (days > 0) {
             stringList.add(days + " " + (days == 1 ? "dag" : "dage"));
