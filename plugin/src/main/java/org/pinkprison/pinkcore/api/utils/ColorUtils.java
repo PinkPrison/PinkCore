@@ -1,7 +1,6 @@
 package org.pinkprison.pinkcore.api.utils;
 
 import org.bukkit.ChatColor;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -69,7 +68,6 @@ public class ColorUtils {
      * @param string The string to translate
      * @return The translated string
      */
-    @Contract("_ -> new")
     public static @NotNull String color(String string){
         return ChatColor.translateAlternateColorCodes('&', string);
     }
