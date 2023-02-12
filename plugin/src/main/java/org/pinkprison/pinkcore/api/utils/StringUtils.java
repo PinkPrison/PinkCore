@@ -16,6 +16,15 @@ import java.util.List;
 public class StringUtils {
 
     /**
+     * You cannot instantiate this class
+     *
+     * @apiNote You cannot instantiate this class
+     */
+    private StringUtils() {
+        throw new IllegalStateException("Utility class, cannot be instantiated");
+    }
+
+    /**
      * Returns a formatted String from a List of Strings.
      * if the list is empty, it will return a predetermined string.
      *

@@ -19,6 +19,15 @@ public class TimeUtils {
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
+     * You cannot instantiate this class
+     *
+     * @apiNote You cannot instantiate this class
+     */
+    private TimeUtils() {
+        throw new IllegalStateException("Utility class, cannot be instantiated");
+    }
+
+    /**
      * Current unix in seconds.
      *
      * @return long value of current unix in seconds

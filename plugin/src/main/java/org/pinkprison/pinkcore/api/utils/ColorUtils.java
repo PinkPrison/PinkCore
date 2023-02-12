@@ -18,6 +18,11 @@ import java.util.List;
  */
 public class ColorUtils {
 
+    /**
+     * You cannot instantiate this class
+     *
+     * @apiNote You cannot instantiate this class
+     */
     private ColorUtils() {
         throw new IllegalStateException("Utility class, cannot be instantiated");
     }
