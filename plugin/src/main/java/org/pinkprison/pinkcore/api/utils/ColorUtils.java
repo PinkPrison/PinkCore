@@ -22,31 +22,6 @@ public class ColorUtils {
         throw new IllegalStateException("Utility class, cannot be instantiated");
     }
 
-    /** @deprecated Use {@link #color(String...)} instead */
-    @Deprecated
-    public static String[] colorize(String... stringList){
-        if(stringList == null) return null;
-        for(int i = 0; i< stringList.length;i++)
-            stringList[i] = colorize(stringList[i]);
-        return stringList;
-    }
-
-    /** @deprecated Use {@link #color(List)} instead */
-    @Deprecated
-    public static List<String> colorize(List<String> stringList){
-        if(stringList == null) return null;
-        for(int i = 0; i< stringList.size();i++)
-            stringList.set(i, colorize(stringList.get(i)));
-        return stringList;
-    }
-
-    /** @deprecated Use {@link #color(String)} instead */
-    @Deprecated
-    @Contract("_ -> new")
-    public static @NotNull String colorize(String s){
-        return ChatColor.translateAlternateColorCodes('&', s);
-    }
-
     /**
      * Translates a string using an alternate color code character into
      * an array of Strings that uses the internal {@link ChatColor}.COLOR_CODE
@@ -55,10 +30,14 @@ public class ColorUtils {
      * @return The translated string(s)
      */
     public static String[] color(String... stringList){
-        if (stringList == null) return null;
+        if (stringList == null) {
+            return null;
+        }
+
         for (int i = 0; i < stringList.length; i++) {
             stringList[i] = color(stringList[i]);
         }
+
         return stringList;
     }
 
@@ -70,7 +49,10 @@ public class ColorUtils {
      * @return The translated string(s)
      */
     public static List<String> color(List<String> stringList){
-        if (stringList == null) return null;
+        if (stringList == null) {
+            return null;
+        }
+
         stringList.replaceAll(ColorUtils::color);
         return stringList;
     }
@@ -79,11 +61,11 @@ public class ColorUtils {
      * Translates a string using an alternate color code character
      * into a string that uses the internal {@link ChatColor}.COLOR_CODE
      *
-     * @param s The string to translate
+     * @param string The string to translate
      * @return The translated string
      */
     @Contract("_ -> new")
-    public static @NotNull String color(String s){
-        return ChatColor.translateAlternateColorCodes('&', s);
+    public static @NotNull String color(String string){
+        return ChatColor.translateAlternateColorCodes('&', string);
     }
 }
