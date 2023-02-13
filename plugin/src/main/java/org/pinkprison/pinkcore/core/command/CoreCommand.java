@@ -51,7 +51,7 @@ public class CoreCommand extends Command implements CommandExecutor {
         sender.sendMessage("");
         sender.sendMessage(ColorUtils.color(this.plugin.getPrefix()) + " §bCommands:");
         for (SubCommand command : super.getSubCommands()) {
-            if (!hasPermission(sender, command.getPermission())) continue;
+            if (!hasPermission(sender, command.getPermissions())) continue;
             sender.sendMessage(" §f- §b" + command.getUsage(label) + " §f" + command.getDescription());
         }
         sender.sendMessage("");

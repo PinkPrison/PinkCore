@@ -28,7 +28,7 @@ public class ReloadCommand extends SubCommand {
             return CommandResult.wrongUsage(this);
         }
 
-        if (!hasPermission(sender, getPermission())) {
+        if (!hasPermission(sender, getPermissions())) {
             return CommandResult.noPermission(this);
         }
 
