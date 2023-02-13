@@ -15,14 +15,16 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public abstract class SubCommand extends Command {
 
-    private final String permission;
     private final String usage;
     private final String description;
+    private final String[] permissions;
     private final String[] aliases;
 
     /**
      * Create a new sub command.
-
+     *
+     * @apiNote This constructor is for commands that have one permission.
+     *
      * @param plugin The plugin that the command is registered to.
      * @param description The description of the command.
      * @param usage The usage of the command.
@@ -34,7 +36,27 @@ public abstract class SubCommand extends Command {
 
         this.description = description;
         this.usage = usage;
-        this.permission = permission;
+        this.permissions = new String[] { permission };
+        this.aliases = aliases;
+    }
+
+    /**
+     * Create a new sub command.
+     *
+     * @apiNote This constructor is for commands that have multiple permissions.
+     *
+     * @param plugin The plugin that the command is registered to.
+     * @param description The description of the command.
+     * @param usage The usage of the command.
+     * @param permissions The permissions of the command
+     * @param aliases The aliases of the command.
+     */
+    public SubCommand(JavaPlugin plugin, String description, String usage, String[] permissions, String... aliases) {
+        super(plugin);
+
+        this.description = description;
+        this.usage = usage;
+        this.permissions = permissions;
         this.aliases = aliases;
     }
 
@@ -69,8 +91,8 @@ public abstract class SubCommand extends Command {
      *
      * @return The permission of the sub command.
      */
-    public String getPermission() {
-        return this.permission;
+    public String[] getPermissions() {
+        return this.permissions;
     }
 
     /**

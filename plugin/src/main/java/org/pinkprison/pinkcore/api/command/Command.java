@@ -54,7 +54,7 @@ public abstract class Command {
             return CommandResult.noSubCommandFound();
         }
 
-        if (!this.hasPermission(sender, subCommand.getPermission())) {
+        if (!this.hasPermission(sender, subCommand.getPermissions())) {
             return CommandResult.noPermission(subCommand);
         }
 
@@ -81,7 +81,10 @@ public abstract class Command {
      * @return true if the sender is a player, false otherwise
      */
     protected boolean isPlayer(CommandSender sender, String notPlayerMessage) {
-        if (this.isPlayer(sender)) return true;
+        if (this.isPlayer(sender)) {
+            return true;
+        }
+
         sender.sendMessage(ColorUtils.color(notPlayerMessage));
         return false;
     }
@@ -90,13 +93,18 @@ public abstract class Command {
      * Check if the {@link CommandSender} has the specified permission
      *
      * @param sender The {@link CommandSender} to check
-     * @param permission The permission to check
+     * @param permissions The permissions to check
      *
      * @return true if the sender has the permission, false otherwise
      */
-    protected boolean hasPermission(CommandSender sender, String permission) {
-        if (permission.equals("")) return true;
-        return sender.hasPermission(permission);
+    protected boolean hasPermission(CommandSender sender, String[] permissions) {
+        for (String perm : permissions) {
+            if (sender.hasPermission(perm)) {
+                return true;
+            }
+        }
+
+        return permissions.length == 0;
     }
 
     /**
@@ -104,14 +112,33 @@ public abstract class Command {
      * and send a message if not
      *
      * @param sender The {@link CommandSender} to check
-     * @param permission The permission to check
+     * @param permissions The permissions to check
      * @param noPermissionMessage The message to send if the sender does not have the permission
      * @return true if the sender has the permission, false otherwise
      */
-    protected boolean hasPermission(CommandSender sender, String permission, String noPermissionMessage) {
-        if (this.hasPermission(sender, permission)) return true;
+    protected boolean hasPermission(CommandSender sender, String[] permissions, String noPermissionMessage) {
+        if (this.hasPermission(sender, permissions)) {
+            return true;
+        }
+
         sender.sendMessage(ColorUtils.color(noPermissionMessage));
         return false;
+    }
+
+    /**
+     * Get a sub command from an alias
+     *
+     * @param alias The alias to check
+     * @return The sub command if found, null otherwise
+     */
+    protected SubCommand getSubCommandFromAliasOrNull(String alias) {
+        for (SubCommand command : this.commands) {
+            if (command.containsAlias(alias)) {
+                return command;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -130,21 +157,5 @@ public abstract class Command {
      */
     protected JavaPlugin getPlugin() {
         return this.plugin;
-    }
-
-    /**
-     * Get a sub command from an alias
-     *
-     * @param alias The alias to check
-     * @return The sub command if found, null otherwise
-     */
-    protected SubCommand getSubCommandFromAliasOrNull(String alias) {
-        for (SubCommand command : this.commands) {
-            if (command.containsAlias(alias)) {
-                return command;
-            }
-        }
-
-        return null;
     }
 }
