@@ -2,6 +2,7 @@ package org.pinkprison.pinkcore.api.title;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.pinkprison.pinkcore.api.utils.NMSUtils;
 
 import java.lang.reflect.Constructor;
 import java.util.Objects;
@@ -65,18 +66,18 @@ public class TitleAPI {
      */
     public static void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
         try {
-            Constructor<?> subtitleConstructor = Objects.requireNonNull(getNMSClass("PacketPlayOutTitle")).getConstructor(Objects.requireNonNull(getNMSClass("PacketPlayOutTitle")).getDeclaredClasses()[0], getNMSClass("IChatBaseComponent"), Integer.TYPE, Integer.TYPE, Integer.TYPE);;
+            Constructor<?> subtitleConstructor = Objects.requireNonNull(NMSUtils.getNMSClass("PacketPlayOutTitle")).getConstructor(Objects.requireNonNull(NMSUtils.getNMSClass("PacketPlayOutTitle")).getDeclaredClasses()[0], NMSUtils.getNMSClass("IChatBaseComponent"), Integer.TYPE, Integer.TYPE, Integer.TYPE);;
 
             if (title != null) {
-                Object chatTitle = Objects.requireNonNull(getNMSClass("IChatBaseComponent")).getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + title + "\"}");
-                Object titlePacketField = Objects.requireNonNull(getNMSClass("PacketPlayOutTitle")).getDeclaredClasses()[0].getField("TITLE").get(null);
+                Object chatTitle = Objects.requireNonNull(NMSUtils.getNMSClass("IChatBaseComponent")).getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + title + "\"}");
+                Object titlePacketField = Objects.requireNonNull(NMSUtils.getNMSClass("PacketPlayOutTitle")).getDeclaredClasses()[0].getField("TITLE").get(null);
                 Object titlePacket = subtitleConstructor.newInstance(titlePacketField, chatTitle, fadeIn, stay, fadeOut);
                 sendPacket(player, titlePacket);
             }
 
             if (subtitle != null) {
-                Object chatSubtitle = Objects.requireNonNull(getNMSClass("IChatBaseComponent")).getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + subtitle + "\"}");
-                Object subtitlePacketField = Objects.requireNonNull(getNMSClass("PacketPlayOutTitle")).getDeclaredClasses()[0].getField("SUBTITLE").get(null);
+                Object chatSubtitle = Objects.requireNonNull(NMSUtils.getNMSClass("IChatBaseComponent")).getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + subtitle + "\"}");
+                Object subtitlePacketField = Objects.requireNonNull(NMSUtils.getNMSClass("PacketPlayOutTitle")).getDeclaredClasses()[0].getField("SUBTITLE").get(null);
                 Object subtitlePacket = subtitleConstructor.newInstance(subtitlePacketField, chatSubtitle, fadeIn, stay, fadeOut);
                 sendPacket(player, subtitlePacket);
             }
@@ -102,7 +103,7 @@ public class TitleAPI {
         try {
             Object handle = player.getClass().getMethod("getHandle").invoke(player);
             Object playerConnection = handle.getClass().getField("playerConnection").get(handle);
-            playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
+            playerConnection.getClass().getMethod("sendPacket", NMSUtils.getNMSClass("Packet")).invoke(playerConnection, packet);
         } catch (Exception ignored) { }
     }
 

@@ -2,9 +2,9 @@ package org.pinkprison.pinkcore.api.actionbar;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.pinkprison.pinkcore.PinkCore;
+import org.pinkprison.pinkcore.api.utils.NMSUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -22,13 +22,6 @@ import java.util.Objects;
  */
 public class ActionBarAPI {
 
-    private static String nmsVersion;
-
-    static {
-        nmsVersion = Bukkit.getServer().getClass().getPackage().getName();
-        nmsVersion = nmsVersion.substring(nmsVersion.lastIndexOf(".") + 1);
-    }
-
     /**
      * Send an actionbar message to a player
      *
@@ -42,13 +35,13 @@ public class ActionBarAPI {
         }
 
         try {
-            Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nmsVersion + ".entity.CraftPlayer");
+            Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + NMSUtils.getNMSVersion() + ".entity.CraftPlayer");
             Object craftPlayer = craftPlayerClass.cast(player);
             Object packet;
-            Class<?> packetPlayOutChatClass = getNMSClass("PacketPlayOutChat");
-            Class<?> chatComponentTextClass = getNMSClass("ChatComponentText");
-            Class<?> iChatBaseComponentClass = getNMSClass("IChatBaseComponent");
-            Class<?> chatMessageTypeClass = getNMSClass("ChatMessageType");
+            Class<?> packetPlayOutChatClass = NMSUtils.getNMSClass("PacketPlayOutChat");
+            Class<?> chatComponentTextClass = NMSUtils.getNMSClass("ChatComponentText");
+            Class<?> iChatBaseComponentClass = NMSUtils.getNMSClass("IChatBaseComponent");
+            Class<?> chatMessageTypeClass = NMSUtils.getNMSClassOrNull("ChatMessageType");
             if (chatMessageTypeClass != null) {
                 Object[] chatMessageTypes = chatMessageTypeClass.getEnumConstants();
                 Object chatMessageType = null;
@@ -68,7 +61,7 @@ public class ActionBarAPI {
             Object craftPlayerHandle = craftPlayerHandleMethod.invoke(craftPlayer);
             Field playerConnectionField = craftPlayerHandle.getClass().getDeclaredField("playerConnection");
             Object playerConnection = playerConnectionField.get(craftPlayerHandle);
-            Method sendPacketMethod = playerConnection.getClass().getDeclaredMethod("sendPacket", getNMSClass("Packet"));
+            Method sendPacketMethod = playerConnection.getClass().getDeclaredMethod("sendPacket", NMSUtils.getNMSClass("Packet"));
             sendPacketMethod.invoke(playerConnection, packet);
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,20 +121,6 @@ public class ActionBarAPI {
     public static void sendActionBarToAllPlayers(String message, int duration) {
         for (Player p : Bukkit.getOnlinePlayers()) {
             sendActionBar(p, message, duration);
-        }
-    }
-
-    /**
-     * Gets a NMS class by name.
-     *
-     * @param name The name of the class.
-     * @return The class.
-     */
-    private static Class<?> getNMSClass(String name) {
-        try {
-            return Class.forName("net.minecraft.server." + nmsVersion + "." + name);
-        } catch (ClassNotFoundException e) {
-            return null;
         }
     }
 }
