@@ -54,4 +54,13 @@ public class NMSUtils {
     public static Class<?> getNMSClass(String name) throws ClassNotFoundException {
         return Class.forName("net.minecraft.server." + nmsVersion + "." + name);
     }
+
+    /**
+     * Get the net.minecraft.server version.
+     *
+     * @return The NMS version.
+     */
+    public static String getNMSVersion() {
+        return nmsVersion;
+    }
 }
