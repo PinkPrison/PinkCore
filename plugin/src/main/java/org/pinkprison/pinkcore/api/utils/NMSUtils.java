@@ -34,13 +34,24 @@ public class NMSUtils {
      * Gets a NMS class by name.
      *
      * @param name The name of the class.
-     * @return The class.
+     * @return The class or null if the class doesn't exist.
      */
-    public static Class<?> getNMSClass(String name) {
+    public static Class<?> getNMSClassOrNull(String name) {
         try {
             return Class.forName("net.minecraft.server." + nmsVersion + "." + name);
         } catch (ClassNotFoundException e) {
             return null;
         }
+    }
+
+    /**
+     * Gets a NMS class by name.
+     *
+     * @param name The name of the class.
+     * @throws ClassNotFoundException If the class doesn't exist.
+     * @return The class.
+     */
+    public static Class<?> getNMSClass(String name) throws ClassNotFoundException {
+        return Class.forName("net.minecraft.server." + nmsVersion + "." + name);
     }
 }
