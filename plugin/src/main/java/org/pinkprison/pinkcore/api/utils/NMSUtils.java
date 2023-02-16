@@ -38,7 +38,7 @@ public class NMSUtils {
      */
     public static Class<?> getNMSClassOrNull(String name) {
         try {
-            return Class.forName("net.minecraft.server." + nmsVersion + "." + name);
+            return getNMSClass(name);
         } catch (ClassNotFoundException e) {
             return null;
         }
