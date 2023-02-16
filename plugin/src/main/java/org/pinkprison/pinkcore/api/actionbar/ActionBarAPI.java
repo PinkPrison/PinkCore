@@ -22,11 +22,9 @@ import java.util.Objects;
  */
 public class ActionBarAPI {
 
-    private static final JavaPlugin plugin;
     private static String nmsVersion;
 
     static {
-        plugin = PinkCore.getInstance();
         nmsVersion = Bukkit.getServer().getClass().getPackage().getName();
         nmsVersion = nmsVersion.substring(nmsVersion.lastIndexOf(".") + 1);
     }
@@ -96,7 +94,7 @@ public class ActionBarAPI {
                 public void run() {
                     sendActionBar(player, "");
                 }
-            }.runTaskLater(plugin, duration + 1);
+            }.runTaskLater(PinkCore.getInstance(), duration + 1);
         }
 
         // Re-sends the messages every 3 seconds, so it doesn't go away from the player's screen.
@@ -107,7 +105,7 @@ public class ActionBarAPI {
                 public void run() {
                     sendActionBar(player, message);
                 }
-            }.runTaskLater(plugin, duration);
+            }.runTaskLater(PinkCore.getInstance(), duration);
         }
     }
 
