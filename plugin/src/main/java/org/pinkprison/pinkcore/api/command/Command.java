@@ -3,7 +3,6 @@ package org.pinkprison.pinkcore.api.command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.pinkprison.pinkcore.api.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,7 +84,7 @@ public abstract class Command {
             return true;
         }
 
-        sender.sendMessage(ColorUtils.color(notPlayerMessage));
+        sender.sendMessage(notPlayerMessage);
         return false;
     }
 
@@ -121,7 +120,7 @@ public abstract class Command {
             return true;
         }
 
-        sender.sendMessage(ColorUtils.color(noPermissionMessage));
+        sender.sendMessage(noPermissionMessage);
         return false;
     }
 
