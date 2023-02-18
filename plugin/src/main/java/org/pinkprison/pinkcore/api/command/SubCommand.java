@@ -5,6 +5,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * A sub command of a {@link Command}.
+ * It can be described as follows:
+ * <p>
+ * - Sub commands are a secondary command that is registered to a {@link Command}.
+ * </p>
+ * <p>
+ * - The sub command can have multiple aliases and permissions.
+ * </p>
+ * <p>
+ * - Sub commands can be executed by a {@link CommandSender}.
+ * </p>
  *
  * <p>
  *     This class is part of the PinkCore project.
@@ -15,9 +25,25 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public abstract class SubCommand extends Command {
 
+    /**
+     * The usage of the command.
+     * E.g. /command <sub-command> <args>
+     */
     private final String usage;
+    /**
+     * The description of the command.
+     * E.g. This command is used to do something.
+     */
     private final String description;
+    /**
+     * The permissions of the command.
+     * E.g. command.sub-command
+     */
     private final String[] permissions;
+    /**
+     * The aliases of the command.
+     * E.g. sub-command, subcommand, subcmd
+     */
     private final String[] aliases;
 
     /**

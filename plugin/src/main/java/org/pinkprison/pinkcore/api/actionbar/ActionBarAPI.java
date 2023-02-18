@@ -23,7 +23,7 @@ import java.util.Objects;
 public class ActionBarAPI {
 
     /**
-     * Send an actionbar message to a player
+     * Sends an actionbar message to a player
      *
      * @param player Player to send the message to
      *               (if online)
@@ -69,7 +69,7 @@ public class ActionBarAPI {
     }
 
     /**
-     * Send an actionbar message to a player for a set amount of time
+     * Sends an actionbar message to a player for a set amount of time
      *
      * @param player Player to send the message to
      *               (if online)
@@ -103,7 +103,7 @@ public class ActionBarAPI {
     }
 
     /**
-     * Send an actionbar message to all players
+     * Sends an actionbar message to all players
      *
      * @param message Message to send
      */
@@ -112,7 +112,7 @@ public class ActionBarAPI {
     }
 
     /**
-     * Send an actionbar message to all players for a set amount of time
+     * Sends an actionbar message to all players for a set amount of time
      *
      * @param message Message to send
      * @param duration Duration to send the message for
