@@ -6,7 +6,7 @@
 
 En kernefunktionalitets plugin for projekter lavet af PinkPrison's udviklingshold.
 
-# Table of Contents
+# Indholdsfortegnelse
 
 - [API](#api)
 - [Core](#core)
@@ -15,13 +15,15 @@ En kernefunktionalitets plugin for projekter lavet af PinkPrison's udviklingshol
 
 # API
 
-### :exclamation: API indeholder følgende:
+### :exclamation: API'en indeholder følgende:
 
 - En nemmere måde at sende actionbars og (sub)titles til spillere
 
 - Nemme måder at oprette Items og Skulls
 
 - Implementerer TriumphTeams [Gui-System](https://github.com/TriumphTeam/triumph-gui) for nem brug
+
+- Scoreboard system til at oprette Scoreboards
 
 - Kommando system til at oprette kommandoer
 
@@ -31,13 +33,13 @@ En kernefunktionalitets plugin for projekter lavet af PinkPrison's udviklingshol
 
 # Core
 
-### :exclamation: Core indeholder følgende
+### :exclamation: Core funktionaliteterne indeholder følgende
 
 - Listeners til at deaktivere Weather events, Explosions og nogle World events 💥
 
 - Funktionalitet til at annullere crafting og placering af visse Items og Blocks :x:
 
-- En Listener , der fikser en Minecraft-fejl, der tillader spillere at skade mere end normalt :heart:
+- En Listener, der fikser en Minecraft-fejl, der tillader spillere at skade mere end normalt :heart:
 
 - En fuldt funktionel CommandBlocker, der annullerer angivne kommandoer (fuldt konfigurerbar) hvis afsenderen af kommandoen ikke er indeholdt i config.yml 👮
 
