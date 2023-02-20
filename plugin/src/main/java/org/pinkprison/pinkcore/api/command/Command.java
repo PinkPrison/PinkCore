@@ -96,7 +96,7 @@ public abstract class Command {
      *
      * @return true if the sender has the permission, false otherwise
      */
-    protected boolean hasPermission(CommandSender sender, String[] permissions) {
+    protected boolean hasPermission(CommandSender sender, String... permissions) {
         for (String perm : permissions) {
             if (sender.hasPermission(perm)) {
                 return true;
@@ -108,45 +108,15 @@ public abstract class Command {
 
     /**
      * Check if the {@link CommandSender} has the specified permission
-     *
-     * @param sender The {@link CommandSender} to check
-     * @param permission The permissions to check
-     *
-     * @return true if the sender has the permission, false otherwise
-     */
-    protected boolean hasPermission(CommandSender sender, String permission) {
-        return sender.hasPermission(permission);
-    }
-
-    /**
-     * Check if the {@link CommandSender} has the specified permission
      * and send a message if not
      *
      * @param sender The {@link CommandSender} to check
+     * @param noPermissionMessage The message to send if the sender does not have the permission
      * @param permissions The permissions to check
-     * @param noPermissionMessage The message to send if the sender does not have the permission
      * @return true if the sender has the permission, false otherwise
      */
-    protected boolean hasPermission(CommandSender sender, String[] permissions, String noPermissionMessage) {
+    protected boolean hasPermission(CommandSender sender, String noPermissionMessage, String... permissions) {
         if (this.hasPermission(sender, permissions)) {
-            return true;
-        }
-
-        sender.sendMessage(noPermissionMessage);
-        return false;
-    }
-
-    /**
-     * Check if the {@link CommandSender} has the specified permission
-     * and send a message if not
-     *
-     * @param sender The {@link CommandSender} to check
-     * @param permission The permissions to check
-     * @param noPermissionMessage The message to send if the sender does not have the permission
-     * @return true if the sender has the permission, false otherwise
-     */
-    protected boolean hasPermission(CommandSender sender, String permission, String noPermissionMessage) {
-        if (this.hasPermission(sender, permission)) {
             return true;
         }
 
