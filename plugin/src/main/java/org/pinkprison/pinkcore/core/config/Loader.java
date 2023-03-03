@@ -35,9 +35,11 @@ public class Loader {
     public String getLeaveMessage() {
         return this.config.getString("server-messages.leave");
     }
+
     public boolean isAutoBroadcastEnabled() {
         return this.config.getBoolean("auto-broadcast.enabled");
     }
+
     public int getAutoBroadcastInterval() {
         return this.config.getInt("auto-broadcast.interval");
     }
