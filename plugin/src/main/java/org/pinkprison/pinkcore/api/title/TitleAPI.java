@@ -106,19 +106,4 @@ public class TitleAPI {
             playerConnection.getClass().getMethod("sendPacket", NMSUtils.getNMSClass("Packet")).invoke(playerConnection, packet);
         } catch (Exception ignored) { }
     }
-
-    /**
-     * Gets a NMS class by name.
-     *
-     * @param name The name of the class.
-     * @return The class.
-     */
-    private static Class<?> getNMSClass(String name) {
-        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-        try {
-            return Class.forName("net.minecraft.server." + version + "." + name);
-        } catch (ClassNotFoundException e) {
-            return null;
-        }
-    }
 }
