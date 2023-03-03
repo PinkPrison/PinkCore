@@ -10,8 +10,8 @@ public class AutoBroadcastTask extends BukkitRunnable {
     private int index = 0;
     private boolean stop = false;
 
-    public AutoBroadcastTask(String[] messages) {
-        this.messages = messages;
+    public AutoBroadcastTask(String... messages) {
+        this.messages = ColorUtils.color(messages);
     }
 
     @Override
@@ -21,10 +21,9 @@ public class AutoBroadcastTask extends BukkitRunnable {
             return;
         }
 
-        String currentMessage = messages[index];
-        Bukkit.broadcastMessage(ColorUtils.color(currentMessage));
+        Bukkit.broadcastMessage(messages[index]); // Evt. modulus (index % messages.length)?
         index++;
-        if(index >= messages.length) {
+        if (index >= messages.length) {
             index = 0;
         }
     }
