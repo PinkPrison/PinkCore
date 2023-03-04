@@ -3,6 +3,7 @@ package org.pinkprison.pinkcore.api.title;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.pinkprison.pinkcore.api.utils.NMSUtils;
+import org.pinkprison.pinkcore.api.utils.PacketUtils;
 
 import java.lang.reflect.Constructor;
 import java.util.Objects;
@@ -72,14 +73,14 @@ public class TitleAPI {
                 Object chatTitle = Objects.requireNonNull(NMSUtils.getNMSClass("IChatBaseComponent")).getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + title + "\"}");
                 Object titlePacketField = Objects.requireNonNull(NMSUtils.getNMSClass("PacketPlayOutTitle")).getDeclaredClasses()[0].getField("TITLE").get(null);
                 Object titlePacket = subtitleConstructor.newInstance(titlePacketField, chatTitle, fadeIn, stay, fadeOut);
-                sendPacket(player, titlePacket);
+                PacketUtils.sendPacket(player, titlePacket);
             }
 
             if (subtitle != null) {
                 Object chatSubtitle = Objects.requireNonNull(NMSUtils.getNMSClass("IChatBaseComponent")).getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + subtitle + "\"}");
                 Object subtitlePacketField = Objects.requireNonNull(NMSUtils.getNMSClass("PacketPlayOutTitle")).getDeclaredClasses()[0].getField("SUBTITLE").get(null);
                 Object subtitlePacket = subtitleConstructor.newInstance(subtitlePacketField, chatSubtitle, fadeIn, stay, fadeOut);
-                sendPacket(player, subtitlePacket);
+                PacketUtils.sendPacket(player, subtitlePacket);
             }
         } catch (Exception ignored) { }
     }
@@ -91,19 +92,5 @@ public class TitleAPI {
      */
     public static void clearTitle(Player player) {
         sendTitle(player, "", "", 0, 0, 0);
-    }
-
-    /**
-     * Helper method to send a title packet to a {@link Player}.
-     *
-     * @param player The {@link Player} to send the packet to
-     * @param packet to send
-     */
-    private static void sendPacket(Player player, Object packet) {
-        try {
-            Object handle = player.getClass().getMethod("getHandle").invoke(player);
-            Object playerConnection = handle.getClass().getField("playerConnection").get(handle);
-            playerConnection.getClass().getMethod("sendPacket", NMSUtils.getNMSClass("Packet")).invoke(playerConnection, packet);
-        } catch (Exception ignored) { }
     }
 }
