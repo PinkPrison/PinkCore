@@ -13,12 +13,13 @@ public class BroadcastCommand extends Command implements CommandExecutor {
 
     public BroadcastCommand(PinkCore plugin) {
         super(plugin);
+        plugin.getCommand("broadcast").setExecutor(this);
         this.plugin = plugin;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
-        if (!sender.hasPermission("pinkstaff.broadcast")) {
+        if (!sender.hasPermission("pinkcore.command.broadcast")) {
             sender.sendMessage(ColorUtils.color(plugin.getPrefix() + " &fDu har ikke adgang til denne kommando."));
             return true;
         }

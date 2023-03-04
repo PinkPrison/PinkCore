@@ -13,3 +13,6 @@ commands:
         description: Core command for PinkCore
         usage: /pinkcore
         permission: pinkcore.command.pinkcore
+    broadcast:
+        description: Broadcast a message to the server
+        usage: /broadcast <message>
