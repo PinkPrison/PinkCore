@@ -15,6 +15,15 @@ import org.bukkit.entity.Player;
 public class PacketUtils {
 
     /**
+     * You cannot instantiate this class
+     *
+     * @apiNote You cannot instantiate this class
+     */
+    private PacketUtils() {
+        throw new IllegalStateException("Utility class, cannot be instantiated");
+    }
+
+    /**
      * Method to send a packet to a {@link Player}.
      *
      * @param player The {@link Player} to send the packet to
