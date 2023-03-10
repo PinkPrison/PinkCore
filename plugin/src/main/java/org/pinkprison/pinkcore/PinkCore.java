@@ -8,8 +8,7 @@ import org.pinkprison.pinkcore.api.listener.Listeners;
 import org.pinkprison.pinkcore.api.hooks.Hook;
 import org.pinkprison.pinkcore.api.hooks.PlaceholderAPIHook;
 import org.pinkprison.pinkcore.api.hooks.VaultHook;
-import org.pinkprison.pinkcore.core.command.BroadcastCommand;
-import org.pinkprison.pinkcore.core.command.CoreCommand;
+import org.pinkprison.pinkcore.core.command.*;
 import org.pinkprison.pinkcore.core.config.Loader;
 import org.pinkprison.pinkcore.core.listeners.*;
 import org.pinkprison.pinkcore.core.metrics.Metrics;
@@ -68,6 +67,9 @@ public final class PinkCore extends JavaPlugin{
         this.getLogger().info("Loading commands...");
         new CoreCommand(getInstance());
         new BroadcastCommand(getInstance());
+        new DiscordCommand(getInstance());
+        new ReglerCommand(getInstance());
+        new OntimeCommand(getInstance());
     }
 
     private void registerListeners(Loader loader) {

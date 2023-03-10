@@ -16,3 +16,14 @@ commands:
     broadcast:
         description: Broadcast a message to the server
         usage: /broadcast <message>
+    discord:
+        description: Get the discord link
+        usage: /discord
+    regler:
+        aliases: rules
+        description: Get the rules
+        usage: /regler
+    ontime:
+      aliases: onlinetid
+      description: Get your ontime
+      usage: /ontime
