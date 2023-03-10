@@ -7,6 +7,7 @@ import org.pinkprison.pinkcore.api.command.Command;
 import org.pinkprison.pinkcore.api.command.CommandResult;
 import org.pinkprison.pinkcore.api.command.SubCommand;
 import org.pinkprison.pinkcore.api.utils.ColorUtils;
+import org.pinkprison.pinkcore.core.command.subcore.InfoCommand;
 import org.pinkprison.pinkcore.core.command.subcore.ReloadCommand;
 import org.pinkprison.pinkcore.core.command.subcore.UniqueIdentifierCommand;
 
@@ -20,6 +21,7 @@ public class CoreCommand extends Command implements CommandExecutor {
         this.plugin = plugin;
         super.addSubCommand(new ReloadCommand(plugin));
         super.addSubCommand(new UniqueIdentifierCommand(plugin));
+        super.addSubCommand(new InfoCommand(plugin));
     }
 
     @Override
