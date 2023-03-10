@@ -115,4 +115,8 @@ public final class PinkCore extends JavaPlugin{
     public static PinkCore getInstance() {
         return INSTANCE;
     }
+
+    public static HashMap<String, Plugin> getDependants() {
+        return DEPENDANTS;
+    }
 }
